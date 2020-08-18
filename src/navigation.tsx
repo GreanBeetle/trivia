@@ -5,12 +5,12 @@ import { HomeScreen, QuizScreen } from './screens'
 
 const Stack = createStackNavigator()
 
-const InitialStackScreens = () => {
+const InitialStackScreens = () => (
   <Stack.Navigator>
     <Stack.Screen name='Home' component={HomeScreen} />
     <Stack.Screen name='Quiz' component={QuizScreen} />
   </Stack.Navigator>
-}
+)
 
 const Navigation = () => (
   <NavigationContainer>

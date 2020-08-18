@@ -12,7 +12,7 @@ React Native app built with expo, Redux, Redux Thunk, and hooks. This is for G2i
 
 ### note regarding TypeScript 
 
-TypeScript was used for much of the business logic in the application. However, due to time constraints, I did attempt to use TypeScript when defining things like functional components or implementing the Navigation architecture. These are implemented using straight up JS. 
+TypeScript was used for much of the business logic in the application. However, due to time constraints, I did not attempt to use TypeScript when defining things like functional components or implementing the Navigation architecture. These are implemented using straight up JS. FIX THIS 
 
 ### run a build on your mobile device
 
@@ -24,7 +24,8 @@ Run the following commands on your comp
 
 - `git clone https://github.com/GreanBeetle/trivia`
 - `cd trivia`
-- `npm run start`
+- `npm install` 
+- `npm start` or `expo start`
 
 For iOS, scan the resulting QR code with the camera's built-in scanner. For Android, use the Expo app itself to scan the QR code. 
 
