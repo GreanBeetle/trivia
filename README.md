@@ -10,6 +10,10 @@
 
 React Native app built with expo, Redux, Redux Thunk, and hooks. This is for G2i's Trivia Game Coding Challenge. [All app specs and requirements can be viewed on their gist.](https://gist.github.com/severnsc/e09f4f8742b7dd91af9c422d6f210a57)       
 
+### note regarding TypeScript 
+
+TypeScript was used for much of the business logic in the application. However, due to time constraints, I did attempt to use TypeScript when defining things like functional components or implementing the Navigation architecture. These are implemented using straight up JS. 
+
 ### run a build on your mobile device
 
 If you haven't already, install the [Expo Client](https://expo.io/) on your phone - go to the App Store or Play Store, search for "Expo" and install it. 
