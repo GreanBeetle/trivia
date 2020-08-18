@@ -18,9 +18,9 @@ Be sure that your phone and computer are on the same wireless network.
 
 Run the following commands on your comp 
 
-`git clone https://github.com/GreanBeetle/trivia`
-`cd trivia`
-`npm run start`
+- `git clone https://github.com/GreanBeetle/trivia`
+- `cd trivia`
+- `npm run start`
 
 For iOS, scan the resulting QR code with the camera's built-in scanner. For Android, use the Expo app itself to scan the QR code. 
 
