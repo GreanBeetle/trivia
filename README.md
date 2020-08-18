@@ -6,7 +6,7 @@
 [![Generic badge](https://img.shields.io/badge/build-passing-brightgreen.svg?style=plastic&labelColor=36566F)](https://shields.io/)
 ![React Native](https://img.shields.io/static/v1?message=React-Native-0.63&color=61dafb&style=plastic&logo=react&label=&labelColor=36566F)
 ![Redux](https://img.shields.io/static/v1?message=Redux-4.0.5&color=764abc&style=plastic&logo=redux&label=&labelColor=36566F)
-![TypeScript](https://img.shields.io/static/v1?message=TypeScript&color=f7df1e&style=plastic&logo=typescript&label=&labelColor=36566F)
+![TypeScript](https://img.shields.io/static/v1?message=TypeScript&color=007acc&style=plastic&logo=typescript&label=&labelColor=36566F)
 
 React Native app built with expo, Redux, Redux Thunk, and hooks. This is for G2i's Trivia Game Coding Challenge. [All app specs and requirements can be viewed on their gist.](https://gist.github.com/severnsc/e09f4f8742b7dd91af9c422d6f210a57)       
 
