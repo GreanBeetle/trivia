@@ -1,14 +1,16 @@
 import React from 'react'
-import { SafeAreaView, View, Text } from 'react-native'
+import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
 
 const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView>
-      <View>
-        <Text>
-          HomeScreen
-        </Text>
-      </View>
+      <TouchableOpacity onPress={():void => navigation.push('Quiz')}>
+        <View>
+          <Text>
+            HomeScreen
+          </Text>
+        </View>
+      </TouchableOpacity>
     </SafeAreaView>
   )
 }

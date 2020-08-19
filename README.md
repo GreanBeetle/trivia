@@ -4,7 +4,7 @@
 [![Generic badge](https://img.shields.io/badge/license-MIT-green.svg?style=plastic&labelColor=36566F)](https://shields.io/)
 ![GitHub last commit](https://img.shields.io/github/last-commit/GreanBeetle/trivia?style=plastic&labelColor=36566F)
 [![Generic badge](https://img.shields.io/badge/build-passing-brightgreen.svg?style=plastic&labelColor=36566F)](https://shields.io/)
-![React Native](https://img.shields.io/static/v1?message=React-Native-0.63&color=61dafb&style=plastic&logo=react&label=&labelColor=36566F)
+![React Native](https://img.shields.io/static/v1?message=React-Native&color=61dafb&style=plastic&logo=react&label=&labelColor=36566F)
 ![Redux](https://img.shields.io/static/v1?message=Redux-4.0.5&color=764abc&style=plastic&logo=redux&label=&labelColor=36566F)
 ![TypeScript](https://img.shields.io/static/v1?message=TypeScript&color=007acc&style=plastic&logo=typescript&label=&labelColor=36566F&logoColor=007acc)
 
