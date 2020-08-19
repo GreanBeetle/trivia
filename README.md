@@ -10,11 +10,7 @@
 
 React Native app built with expo, Redux, Redux Thunk, and hooks. This is for G2i's Trivia Game Coding Challenge. [All app specs and requirements can be viewed on their gist.](https://gist.github.com/severnsc/e09f4f8742b7dd91af9c422d6f210a57)       
 
-### note regarding TypeScript 
-
-TypeScript was used for much of the business logic in the application. However, due to time constraints, I did not attempt to use TypeScript when defining things like functional components or implementing the Navigation architecture. These are implemented using straight up JS. FIX THIS 
-
-### run a build on your mobile device
+### Run a build on your phone
 
 If you haven't already, install the [Expo Client](https://expo.io/) on your phone - go to the App Store or Play Store, search for "Expo" and install it. 
 
@@ -29,9 +25,23 @@ Run the following commands on your comp
 
 For iOS, scan the resulting QR code with the camera's built-in scanner. For Android, use the Expo app itself to scan the QR code. 
 
-[For help troubleshooting, refer to the React Native documentation.](https://reactnative.dev/docs/environment-setup) 
+[For help troubleshooting, refer to the React Native documentation.](https://reactnative.dev/docs/environment-setup)
 
-### author
+### A note on TypeScript usage 
+
+TypeScript was used for much of the business logic in the application. However, due to time constraints, I did not attempt to use TypeScript when defining things like functional components or implementing the Navigation architecture. These are implemented using straight up JS. FIX THIS 
+
+### A note on Expo 
+
+As required by the specs, this project uses Expo. For the sake of posterity, however, I want to note that, for the following reasons, I don't typically use Expo.  
+
+- In my opinion, a minimum knowledge of Xcode and the use of certificates and profiles is critical for a React Native Developer. Using Expo, developers aren't exposed to this. 
+- I feel similarly about Android Studio. 
+- Reproducing and troubleshooting real-world bugs involving different mobile OSes or, for example, dated or rarely-seen hardware is more difficult with Expo.  
+- Expo makes it hard to debug network issues related to WiFi or Data. 
+- Developing applications that make extensive use of phone hardware - such as bluetooth or NFC modules - is unnecessarily difficult with Exp.  
+
+### Author
 
 John Rykken
 
