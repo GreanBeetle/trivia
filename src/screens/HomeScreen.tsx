@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 const HomeScreen = ({ navigation, isGetting, getQuestionsError, questions }) => {
   console.log('isGetting', isGetting) // REMOVE
   console.log('getQuestionsError', getQuestionsError) // REMOVE
-  console.log('questions') // REMOVE
+  console.log('questions', questions) // REMOVE
   return (
     <SafeAreaView>
       <TouchableOpacity onPress={():void => navigation.push('Quiz')}>
