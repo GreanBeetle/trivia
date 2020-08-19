@@ -3,8 +3,15 @@ import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
 import { connect } from 'react-redux'
 import { getQuestions } from '../redux/actions'
 
-// ADD TYPESCRIPT!!!!
-const HomeScreen = ({ navigation, isGetting, getQuestionsError, questions, getQuestions }) => {
+interface Props {
+  navigation: any,
+  isGetting: boolean,
+  getQuestionsError: object,
+  questions: any, // FIX
+  getQuestions: any // FIX
+}
+
+const HomeScreen: React.FC<Props> = ({ navigation, isGetting, getQuestionsError, questions, getQuestions }) => {
   console.log('isGetting', isGetting) // REMOVE
   console.log('getQuestionsError', getQuestionsError) // REMOVE
   console.log('questions', questions) // REMOVE
@@ -12,7 +19,7 @@ const HomeScreen = ({ navigation, isGetting, getQuestionsError, questions, getQu
   useEffect(() => {
     getQuestions()
   }, [])
-  
+
   return (
     <SafeAreaView>
       <TouchableOpacity onPress={():void => navigation.push('Quiz')}>
@@ -26,6 +33,7 @@ const HomeScreen = ({ navigation, isGetting, getQuestionsError, questions, getQu
   )
 }
 
+// ADD TYPESCRIPT! 
 const mapStateToProps = state => {
   const { isGetting, getQuestionsError, questions } = state.getQuestions
   return { isGetting, getQuestionsError, questions }
