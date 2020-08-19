@@ -2,14 +2,14 @@ import React, { useEffect } from 'react'
 import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
 import { connect } from 'react-redux'
 import { getQuestions } from '../redux/actions'
+import { ObjectType } from '../types'
 
 interface Props {
   navigation: any,
   isGetting: boolean,
   getQuestionsError: object,
-  questions: {[key: string]: any} | null | undefined, 
-  getQuestions: () => object,
-
+  questions: ObjectType | null | undefined, 
+  getQuestions: () => ObjectType,
 }
 
 const HomeScreen: React.FC<Props> = ({ 
@@ -36,9 +36,8 @@ const HomeScreen: React.FC<Props> = ({
     </SafeAreaView>
   )
 }
-
-// ADD TYPESCRIPT! 
-const mapStateToProps = state => {
+ 
+const mapStateToProps = (state: ObjectType) => {
   const { isGetting, getQuestionsError, questions } = state.getQuestions
   return { isGetting, getQuestionsError, questions }
 }
