@@ -7,15 +7,19 @@ interface Props {
   navigation: any,
   isGetting: boolean,
   getQuestionsError: object,
-  questions: any, // FIX
-  getQuestions: any // FIX
+  questions: {[key: string]: any} | null | undefined, 
+  getQuestions: () => object,
+
 }
 
-const HomeScreen: React.FC<Props> = ({ navigation, isGetting, getQuestionsError, questions, getQuestions }) => {
-  console.log('isGetting', isGetting) // REMOVE
-  console.log('getQuestionsError', getQuestionsError) // REMOVE
-  console.log('questions', questions) // REMOVE
-
+const HomeScreen: React.FC<Props> = ({ 
+  navigation, 
+  isGetting, 
+  getQuestionsError, 
+  questions, 
+  getQuestions 
+}) => {
+ 
   useEffect(() => {
     getQuestions()
   }, [])

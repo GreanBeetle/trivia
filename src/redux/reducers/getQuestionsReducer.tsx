@@ -4,15 +4,19 @@ import {
   GET_QUESTIONS_FAILURE
 } from '../actions/types'
 
-// ADD TYPESCRIPT HERE!!!
 const initialState = {
   isGetting: false,
   getQuestionsError: null,
   questions: [] 
 }
 
-// ADD TYPESCRIPT HERE TOO!!!
-const getQuestionsReducer = (state = initialState, action) => {
+const getQuestionsReducer = (
+  state = initialState, 
+  action: { 
+    type: string, 
+    payload: { [key: string]: any} 
+  }
+) => {
   switch(action.type) {
     case GET_QUESTIONS_REQUEST:
       return { ...state, isGetting: true }
