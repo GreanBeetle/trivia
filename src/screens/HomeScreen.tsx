@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
 import { connect } from 'react-redux'
 import { getQuestions } from '../redux/actions'
-import { ObjectType } from '../types'
+import { ObjectType } from '../reusableTypes'
 
 interface Props {
   navigation: any,

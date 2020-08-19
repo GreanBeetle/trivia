@@ -3,7 +3,7 @@ import {
   GET_QUESTIONS_SUCCESS,
   GET_QUESTIONS_FAILURE
 } from '../actions/types'
-import { ObjectType } from '../../types'
+import { ObjectType } from '../../reusableTypes'
 
 const initialState = {
   isGetting: false,

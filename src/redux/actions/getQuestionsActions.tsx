@@ -3,19 +3,20 @@ import {
   GET_QUESTIONS_SUCCESS,
   GET_QUESTIONS_FAILURE
 } from './types'
+import { ObjectType, ActionType } from '../../reusableTypes'
 
-export const getQuestionsRequest = ():object => ({ type: GET_QUESTIONS_REQUEST })
+export const getQuestionsRequest = () => ({ type: GET_QUESTIONS_REQUEST })
 
-export const getQuestionsSuccess = (json:object):object => {
+export const getQuestionsSuccess = (json: ObjectType): ActionType => {
   return { type: GET_QUESTIONS_SUCCESS, payload: json }
 }
 
-export const getQuestionsFailure = (error:object):object => {
+export const getQuestionsFailure = (error: ObjectType): ActionType => {
   return { type: GET_QUESTIONS_FAILURE, payload: error }
 }
 
-export const getQuestions = ():object => {
-  return async dispatch => {
+export const getQuestions = (): ObjectType => {
+  return async (dispatch: any) => {
     try {
       console.log('dispatching get questions request')
       dispatch(getQuestionsRequest())
@@ -24,7 +25,8 @@ export const getQuestions = ():object => {
       console.log('dispatching get questions success with response', json)
       dispatch(getQuestionsSuccess(json.results))
     } catch (error) {
-      console.log('dispatching get questions failure ...')
+      console.log('dispatching get questions failure')
+      dispatch(getQuestionsFailure(error))
     }
   }
 }
