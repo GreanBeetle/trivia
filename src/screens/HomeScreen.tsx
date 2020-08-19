@@ -34,6 +34,7 @@ const HomeScreen: React.FC<Props> = ({
       >
         <View >
           <Text>{COPY.title}</Text>
+          <Text style={{fontFamily: 'LexendGiga_400Regular'}}>Lexend perhaps?</Text>
         </View>
       </TouchableOpacity>
     </SafeAreaView>
