@@ -22,7 +22,7 @@ export const getQuestions = ():object => {
       const response = await fetch('https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean')
       const json = await response.json()
       console.log('dispatching get questions success with response', json)
-      dispatch(getQuestionsSuccess(json))
+      dispatch(getQuestionsSuccess(json.results))
     } catch (error) {
       console.log('dispatching get questions failure ...')
     }
