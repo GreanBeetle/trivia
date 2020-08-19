@@ -13,6 +13,7 @@ const createStoreWithMiddleWare = applyMiddleware(thunk)(createStore)
 
 const store = createStoreWithMiddleWare(reducer)
 
+// ADD TYPESCRIPT HERE!
 const App = () => {
   
   let [fontsLoaded] = useFonts({ LexendGiga_400Regular })
@@ -26,7 +27,7 @@ const App = () => {
       </Provider>
     )
   }
-  
+
 } 
 
 export default gestureHandlerRootHOC(App)
