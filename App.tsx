@@ -14,11 +14,10 @@ const createStoreWithMiddleWare = applyMiddleware(thunk)(createStore)
 const store = createStoreWithMiddleWare(reducer)
 
 // ADD TYPESCRIPT HERE!
-const App = () => {
-  
+const App = () => {  
   let [fontsLoaded] = useFonts({ LexendGiga_400Regular })
 
-  if (!fontsLoaded) {
+  if (!fontsLoaded) { // FIX THIS UGLY IF STATEMENT
     return <AppLoading />
   } else {
     return (
