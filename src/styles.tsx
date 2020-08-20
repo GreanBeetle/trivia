@@ -1,4 +1,5 @@
 import { ObjectType } from './reusableTypes'
+import { deviceWindowWidth } from './utilities'
 import COLORS from './colors'
 
 export const GLOBAL_STYLES: ObjectType = {
@@ -48,3 +49,17 @@ export const HOME_SCREEN_STYLES: ObjectType = {
     marginTop: 36
   }
 }
+
+export const SWIPE_COMPONENT_STYLES: ObjectType = {
+  swiper: {
+    width: deviceWindowWidth() - 40,
+    height: 400,
+    backgroundColor: COLORS.accentMint
+  },
+  // TEMPORARY REMOVE ********
+  one: { backgroundColor: COLORS.accentBlue }, 
+  two: { backgroundColor: COLORS.accentMint },
+  tre: { backgroundColor: COLORS.red }
+  // TEMPORARY REMOVE ********
+}
+

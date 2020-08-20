@@ -16,9 +16,9 @@ interface Props {
 
 const HomeScreen: React.FC<Props> = ({ 
   navigation, 
-  isGetting, 
-  getQuestionsError, 
-  questions, 
+  isGetting, // NO USED VARS, ADD ERROR HANDLING COMPONENT I.E. ERROR.TSX
+  getQuestionsError, // NO UNUSED VARS, ADD ERROR HANDLING COMPONENT I.E. ERROR.TSX
+  questions, // NO UNUSED VARS, ADD ERROR HANDLING COMPONENT I.E. ERROR.TSX
   getQuestions 
 }) => {
  
