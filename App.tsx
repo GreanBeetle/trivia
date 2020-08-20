@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler'
-import React from 'react';
+import React, { ReactElement } from 'react';
 import Navigation from './src/navigation'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
@@ -8,24 +8,25 @@ import reducer from './src/redux/reducers'
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler'
 import { AppLoading } from 'expo'
 import { useFonts, LexendGiga_400Regular } from '@expo-google-fonts/lexend-giga'
+import { Roboto_400Regular } from '@expo-google-fonts/roboto'
 
 const createStoreWithMiddleWare = applyMiddleware(thunk)(createStore)
 
 const store = createStoreWithMiddleWare(reducer)
 
-// ADD TYPESCRIPT HERE!
-const App = () => {  
-  let [fontsLoaded] = useFonts({ LexendGiga_400Regular })
+const App = (): ReactElement => {  
+  
+  let [fontsLoaded] = useFonts({ LexendGiga_400Regular, Roboto_400Regular })
 
-  if (!fontsLoaded) { // FIX THIS UGLY IF STATEMENT
-    return <AppLoading />
-  } else {
-    return (
-      <Provider store={store}>
-        <Navigation />
-      </Provider>
-    )
-  }
+  let app: ReactElement = (
+    <Provider store={store}>
+      <Navigation />
+    </Provider>
+  )
+
+  if (!fontsLoaded) app = <AppLoading />
+
+  return app 
 
 } 
 
