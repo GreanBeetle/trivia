@@ -14,19 +14,19 @@ export const GLOBAL_STYLES: ObjectType = {
     justifyContent: 'center'
   },
   smallText: {
-    // fontFamily: FONTS.raleway, // FIX
+    fontFamily: 'Roboto_400Regular',
     fontSize: 12
   },
-  normalText: {
-    // fontFamily: FONTS.raleway, // FIX 
+  regularText: {
+    fontFamily: 'Roboto_400Regular', 
     fontSize: 16
   },
   subHeaderText: {
-    // fontFamily: FONTS.montserrat, // FIX
+    fontFamily: 'LexendGiga_400Regular',
     fontSize: 24
   },
   headerText: {
-    // fontFamily: FONTS.montserrat, // FIX
+    fontFamily: 'LexendGiga_400Regular',
     fontSize: 36
   }
 }

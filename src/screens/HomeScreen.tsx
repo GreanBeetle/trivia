@@ -33,6 +33,10 @@ const HomeScreen: React.FC<Props> = ({
         style={STYLES.standard}
       >
         <View >
+          <Text style={STYLES.headerText}>{COPY.title}</Text>
+          <Text style={STYLES.subHeaderText}>{COPY.title}</Text>
+          <Text style={STYLES.regularText}>{COPY.title}</Text>
+          <Text style={STYLES.smallText}>{COPY.title}</Text>
           <Text>{COPY.title}</Text>
         </View>
       </TouchableOpacity>
