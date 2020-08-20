@@ -3,7 +3,7 @@ import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
 import { connect } from 'react-redux'
 import { getQuestions } from '../redux/actions'
 import { ObjectType } from '../reusableTypes'
-import { GLOBAL_STYLES as STYLES } from '../styles'
+import { GLOBAL_STYLES as STYLES, HOME_SCREEN_STYLES as styles } from '../styles'
 import { homeScreenCopy as COPY } from '../copy'
 
 interface Props {
@@ -32,12 +32,11 @@ const HomeScreen: React.FC<Props> = ({
         onPress={(): void => navigation.push('Quiz')} 
         style={STYLES.standard}
       >
-        <View >
-          <Text style={STYLES.headerText}>{COPY.title}</Text>
-          <Text style={STYLES.subHeaderText}>{COPY.title}</Text>
-          <Text style={STYLES.regularText}>{COPY.title}</Text>
-          <Text style={STYLES.smallText}>{COPY.title}</Text>
-          <Text>{COPY.title}</Text>
+        <View>
+          <Text style={[STYLES.largeText]}>{COPY.sentence}</Text>
+        </View>
+        <View style={[STYLES.centered, styles.beginButton]}>
+          <Text style={[STYLES.subHeaderText, STYLES.white]}>{COPY.begin}</Text>
         </View>
       </TouchableOpacity>
     </SafeAreaView>

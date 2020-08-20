@@ -1,5 +1,6 @@
 export const homeScreenCopy = {
-  title: 'Home'
+  begin: 'begin',
+  sentence: 'answer 10 questions'
 }
 
 export const quizScreenCopy = {
