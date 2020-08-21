@@ -51,10 +51,9 @@ export const HOME_SCREEN_STYLES: ObjectType = {
 }
 
 export const SWIPE_COMPONENT_STYLES: ObjectType = {
-  swiper: {
+  card: {
     width: deviceWindowWidth() - 40,
-    height: 400,
-    backgroundColor: COLORS.accentMint
+    height: 400
   },
   // TEMPORARY REMOVE ********
   one: { backgroundColor: COLORS.accentBlue }, 

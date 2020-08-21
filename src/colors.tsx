@@ -1,6 +1,6 @@
 import { ObjectType } from './reusableTypes'
 
-const COLORS: ObjectType = {
+const COLORS = {
   actionGreen: '#00E174',
   lightActionGreen: '#2DE48C',
   lightGreen: '#59E8A3',
