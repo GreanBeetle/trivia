@@ -1,5 +1,7 @@
 import React from 'react'
-import { SafeAreaView, View, Text } from 'react-native'
+import { SafeAreaView } from 'react-native'
+import { GLOBAL_STYLES as STYLES } from '../styles'
+import { Swipe } from '../components'
 
 interface Props {
   navigation: any 
@@ -7,12 +9,8 @@ interface Props {
 
 const QuizScreen: React.FC<Props> = ({ navigation }) => {
   return (
-    <SafeAreaView>
-      <View>
-        <Text>
-          QuizScreen
-        </Text>
-      </View>
+    <SafeAreaView style={STYLES.container}>
+      <Swipe />
     </SafeAreaView>
   )
 }

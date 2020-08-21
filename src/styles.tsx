@@ -1,4 +1,6 @@
 import { ObjectType } from './reusableTypes'
+import { deviceWindowWidth } from './utilities'
+import COLORS from './colors'
 
 export const GLOBAL_STYLES: ObjectType = {
   container: {
@@ -21,6 +23,10 @@ export const GLOBAL_STYLES: ObjectType = {
     fontFamily: 'Roboto_400Regular', 
     fontSize: 16
   },
+  largeText: {
+    fontFamily: 'LexendGiga_400Regular',
+    fontSize: 20
+  },
   subHeaderText: {
     fontFamily: 'LexendGiga_400Regular',
     fontSize: 24
@@ -28,5 +34,31 @@ export const GLOBAL_STYLES: ObjectType = {
   headerText: {
     fontFamily: 'LexendGiga_400Regular',
     fontSize: 36
+  },
+  white: {
+    color: COLORS.white
   }
 }
+
+export const HOME_SCREEN_STYLES: ObjectType = {
+  beginButton: {
+    width: 144,
+    height: 144,
+    borderRadius: 100,
+    backgroundColor: COLORS.actionGreen,
+    marginTop: 36
+  }
+}
+
+export const SWIPE_COMPONENT_STYLES: ObjectType = {
+  card: {
+    width: deviceWindowWidth() - 40,
+    height: 400
+  },
+  // TEMPORARY REMOVE ********
+  one: { backgroundColor: COLORS.accentBlue }, 
+  two: { backgroundColor: COLORS.accentMint },
+  tre: { backgroundColor: COLORS.red }
+  // TEMPORARY REMOVE ********
+}
+
