@@ -23,7 +23,7 @@ const HomeScreen: React.FC<Props> = ({
 }) => {
  
   useEffect(() => {
-    getQuestions()
+    getQuestions() // WILL NEED TO INVOKE THIS AGAIN USING COMPONENT DID UPDATE OR SOMETHING, AFTER PLAYER HAS FINISHED THE GAME
   }, [])
 
   return (

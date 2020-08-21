@@ -5,31 +5,30 @@ import {
   SWIPE_COMPONENT_STYLES as styles 
 } from '../styles'
 import CardStack, { Card } from 'react-native-card-stack-swiper'
+import { ObjectType } from '../reusableTypes'
 
 
 interface Props {
-  // props here 
+  questions: ObjectType
 }
 
-const Swipe: React.FC<Props> = () => {
+const Swipe: React.FC<Props> = ({ questions }) => {
   
-  const swiper = useRef(null)
-  
+  console.log('questions in swipe component!', questions) // REMOVE
+  const swiper = useRef(null) // PERHAPS UNNECESSARY 
+  const cards = questions.map( (q:ObjectType) => <Card style={styles.card}><Text style={STYLES.smallText}>{q.question}</Text></Card>)
+
   return (
     <View style={STYLES.container}>
      
       <CardStack
         style={styles.content}
-        renderNoMoreCards={() => <Text style={{ fontWeight: '700', fontSize: 18, color: 'gray' }}>No more cards :(</Text>}
-        ref={swiper}
+        renderNoMoreCards={() => <Text style={{ fontWeight: '700', fontSize: 18, color: 'gray' }}>done</Text>}
+        ref={swiper} // PERHAPS UNNECESSARY
         onSwiped={() => console.log('onSwiped')}
         onSwipedLeft={() => console.log('onSwipedLeft')}
       >
-        <Card style={[styles.card, styles.card1]}><Text style={styles.label}>A</Text></Card>
-        <Card style={[styles.card, styles.card2]} onSwipedLeft={() => alert('onSwipedLeft')}><Text style={styles.label}>B</Text></Card>
-        <Card style={[styles.card, styles.card1]}><Text style={styles.label}>C</Text></Card>
-        <Card style={[styles.card, styles.card2]}><Text style={styles.label}>D</Text></Card>
-        <Card style={[styles.card, styles.card1]}><Text style={styles.label}>E</Text></Card>
+        {cards}
       </CardStack>
      
     </View>
