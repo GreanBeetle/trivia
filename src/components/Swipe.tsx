@@ -5,14 +5,15 @@ import {
   SWIPE_COMPONENT_STYLES as styles 
 } from '../styles'
 import CardStack, { Card } from 'react-native-card-stack-swiper'
-import { ObjectType } from '../reusableTypes'
+import { ObjectType, ActionType } from '../reusableTypes' // NO UNUSED VARS!
 
 
 interface Props {
-  questions: ObjectType
+  questions: ObjectType,
+  onSwipe: (index: number, answer: boolean) => void
 }
 
-const Swipe: React.FC<Props> = ({ questions }) => {
+const Swipe: React.FC<Props> = ({ questions, onSwipe }) => {
   
   console.log('questions in swipe component!', questions) // REMOVE
   const swiper = useRef(null) // PERHAPS UNNECESSARY 
@@ -27,9 +28,8 @@ const Swipe: React.FC<Props> = ({ questions }) => {
         style={styles.content}
         renderNoMoreCards={() => <Text style={{ fontWeight: '700', fontSize: 18, color: 'gray' }}>done</Text>}
         ref={swiper} // PERHAPS UNNECESSARY
-        onSwiped={() => console.log('onSwiped')}
-        onSwipedLeft={(index: number) => console.log('onSwipedLeft index', index, false)}
-        onSwipedRight={(index: number) => console.log('onSwipedRight index', index, true)}
+        onSwipedLeft={(index: number) => onSwipe(index, false)}
+        onSwipedRight={(index: number) => onSwipe(index, true)}
       >
         {cards}
       </CardStack>

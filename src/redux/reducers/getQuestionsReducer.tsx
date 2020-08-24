@@ -3,7 +3,7 @@ import {
   GET_QUESTIONS_SUCCESS,
   GET_QUESTIONS_FAILURE
 } from '../actions/types'
-import { ObjectType } from '../../reusableTypes'
+import { ActionType } from '../../reusableTypes'
 
 const initialState = {
   isGetting: false,
@@ -11,12 +11,10 @@ const initialState = {
   questions: [] 
 }
 
+// ADD TYPESCRIPT RETURN TYPE? 
 const getQuestionsReducer = (
   state = initialState, 
-  action: { 
-    type: string, 
-    payload: ObjectType 
-  }
+  action: ActionType
 ) => {
   switch(action.type) {
     case GET_QUESTIONS_REQUEST:
