@@ -5,15 +5,17 @@ import {
   SWIPE_COMPONENT_STYLES as styles 
 } from '../styles'
 import CardStack, { Card } from 'react-native-card-stack-swiper'
-import { ObjectType } from '../reusableTypes'
+import { ObjectType, ActionType } from '../reusableTypes'
 
 
 interface Props {
-  questions: ObjectType
+  questions: ObjectType,
+  onSwipe: (score: number) => ActionType
 }
 
-const Swipe: React.FC<Props> = ({ questions }) => {
+const Swipe: React.FC<Props> = ({ questions, onSwipe }) => {
   
+  console.log('swipe component, onSwipe function', onSwipe(3)) // REMOVE
   console.log('questions in swipe component!', questions) // REMOVE
   const swiper = useRef(null) // PERHAPS UNNECESSARY 
   const cards = questions.map( (q: ObjectType) => <Card style={styles.card}><Text style={STYLES.largeText}>{q.question}</Text></Card>)
