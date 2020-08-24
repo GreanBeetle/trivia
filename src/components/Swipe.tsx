@@ -5,7 +5,7 @@ import {
   SWIPE_COMPONENT_STYLES as styles 
 } from '../styles'
 import CardStack, { Card } from 'react-native-card-stack-swiper'
-import { ObjectType, ActionType } from '../reusableTypes'
+import { ObjectType, ActionType } from '../reusableTypes' // NO UNUSED VARS!
 
 
 interface Props {
