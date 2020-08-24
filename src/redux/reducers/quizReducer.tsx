@@ -16,3 +16,5 @@ const quizReducer = (state = initialState, action: ActionType) => {
       return state 
   }
 }
+
+export default quizReducer
