@@ -51,14 +51,30 @@ export const HOME_SCREEN_STYLES: ObjectType = {
 }
 
 export const SWIPE_COMPONENT_STYLES: ObjectType = {
-  card: {
-    width: deviceWindowWidth() - 40,
-    height: 400
+  content: {
+    flex: 5,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-  // TEMPORARY REMOVE ********
-  one: { backgroundColor: COLORS.accentBlue }, 
-  two: { backgroundColor: COLORS.accentMint },
-  tre: { backgroundColor: COLORS.red }
-  // TEMPORARY REMOVE ********
+  card:{
+    width: deviceWindowWidth() - 40,
+    height: 400,
+    backgroundColor: COLORS.red,
+    borderRadius: 5,
+    shadowColor: 'rgba(0,0,0,0.5)',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.35,
+    padding: 20
+  },
+  card1: { backgroundColor: COLORS.accentAqua },
+  card2: { backgroundColor: COLORS.accentLightBlue },
+  label: {
+    lineHeight: 400,
+    textAlign: 'center',
+    fontSize: 55,
+    fontFamily: 'System',
+    color: '#ffffff',
+    backgroundColor: 'transparent'
+  }
 }
 
