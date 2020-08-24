@@ -5,7 +5,8 @@ import {
   SWIPE_COMPONENT_STYLES as styles 
 } from '../styles'
 import CardStack, { Card } from 'react-native-card-stack-swiper'
-import { ObjectType, ActionType } from '../reusableTypes' // NO UNUSED VARS!
+import { ObjectType } from '../reusableTypes' 
+const Entities = require('html-entities').AllHtmlEntities 
 
 
 interface Props {
@@ -17,7 +18,8 @@ const Swipe: React.FC<Props> = ({ questions, onSwipe }) => {
   
   console.log('questions in swipe component!', questions) // REMOVE
   const swiper = useRef(null) // PERHAPS UNNECESSARY 
-  const cards = questions.map( (q: ObjectType) => <Card style={styles.card}><Text style={STYLES.largeText}>{q.question}</Text></Card>)
+  const entities = new Entities()
+  const cards = questions.map((q: ObjectType) => <Card style={styles.card}><Text style={STYLES.largeText}>{entities.decode(q.question)}</Text></Card>)
 
   return (
     <View style={STYLES.container}>
