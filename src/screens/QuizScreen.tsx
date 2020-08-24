@@ -26,6 +26,7 @@ const QuizScreen: React.FC<Props> = ({
   
   const evaluateAnswer = (index: number, answer: boolean): void => {
     const correct_answer = JSON.parse(questions[index].correct_answer.toLowerCase())
+    console.log(`question #${index} correct answer ${correct_answer}, actual answer ${answer}`)
     if (answer === correct_answer) updateQuizScore(score + 1)
   } 
   
