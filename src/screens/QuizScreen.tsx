@@ -23,11 +23,16 @@ const QuizScreen: React.FC<Props> = ({
   score,
   updateQuizScore
 }) => {
-  console.log('questions on quiz screen', questions) // REMOVE
-  console.log('score on quiz screen', score)
+  
+  const evaluateAnswer = (index: number, answer: boolean): void => {
+    const correct_answer = JSON.parse(questions[index].correct_answer.toLowerCase())
+    if (answer === correct_answer) updateQuizScore(score + 1)
+  } 
+  
+  console.log('score on quiz screen', score) // REMOVE ME  
   return (
     <SafeAreaView style={STYLES.container}>
-      <Swipe questions={questions} onSwipe={updateQuizScore} />
+      <Swipe questions={questions} onSwipe={evaluateAnswer} />
     </SafeAreaView>
   )
 }

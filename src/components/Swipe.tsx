@@ -10,12 +10,11 @@ import { ObjectType, ActionType } from '../reusableTypes'
 
 interface Props {
   questions: ObjectType,
-  onSwipe: (score: number) => ActionType
+  onSwipe: (index: number, answer: boolean) => void
 }
 
 const Swipe: React.FC<Props> = ({ questions, onSwipe }) => {
   
-  console.log('swipe component, onSwipe function', onSwipe(3)) // REMOVE
   console.log('questions in swipe component!', questions) // REMOVE
   const swiper = useRef(null) // PERHAPS UNNECESSARY 
   const cards = questions.map( (q: ObjectType) => <Card style={styles.card}><Text style={STYLES.largeText}>{q.question}</Text></Card>)
@@ -29,9 +28,8 @@ const Swipe: React.FC<Props> = ({ questions, onSwipe }) => {
         style={styles.content}
         renderNoMoreCards={() => <Text style={{ fontWeight: '700', fontSize: 18, color: 'gray' }}>done</Text>}
         ref={swiper} // PERHAPS UNNECESSARY
-        onSwiped={() => console.log('onSwiped')}
-        onSwipedLeft={(index: number) => console.log('onSwipedLeft index', index, false)}
-        onSwipedRight={(index: number) => console.log('onSwipedRight index', index, true)}
+        onSwipedLeft={(index: number) => onSwipe(index, false)}
+        onSwipedRight={(index: number) => onSwipe(index, true)}
       >
         {cards}
       </CardStack>
