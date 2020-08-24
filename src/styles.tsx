@@ -58,12 +58,13 @@ export const SWIPE_COMPONENT_STYLES: ObjectType = {
   },
   card:{
     width: deviceWindowWidth() - 40,
-    height: 470,
-    backgroundColor: '#FE474C',
+    height: 400,
+    backgroundColor: COLORS.red,
     borderRadius: 5,
     shadowColor: 'rgba(0,0,0,0.5)',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity:0.5
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.35,
+    padding: 20
   },
   card1: { backgroundColor: COLORS.accentAqua },
   card2: { backgroundColor: COLORS.accentLightBlue },
