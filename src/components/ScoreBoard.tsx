@@ -23,7 +23,6 @@ const ScoreBoard: React.FC<Props> = ({ questions }) => {
       <View style={styles.bubble}></View>
       <View style={styles.bubble}></View>
       <View style={styles.bubble}></View>
-
     </View>
   )
 }

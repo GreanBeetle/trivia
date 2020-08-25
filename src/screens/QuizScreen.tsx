@@ -25,12 +25,12 @@ const QuizScreen: React.FC<Props> = ({
   // WHAT HAPPENS IF NO QUESTIONS? ADDRESS THIS
 
   const evaluateAnswer = (index: number, answer: boolean): void => {
-    const correct_answer = JSON.parse(questions[index].correct_answer.toLowerCase())
+    const correct_answer = questions[index].correct_answer
     console.log(`question #${index} correct answer ${correct_answer}, actual answer ${answer}`)
     if (answer === correct_answer) updateQuizScore(score + 1)
   } 
   
-  console.log('score on quiz screen', score) // REMOVE ME  
+  console.log('score on quiz screen', score) // REMOVE ME!!!!!  
   return (
     <SafeAreaView style={STYLES.container}>
       <ScoreBoard questions={questions} />
