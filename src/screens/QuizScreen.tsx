@@ -24,13 +24,6 @@ const QuizScreen: React.FC<Props> = ({
   updateQuizScore
 }) => {
   
-  /* hook to prevent user from swiping back to previous screen
-  see react navigation 5 documentation "preventing-going-back"
-  kind of an ugly solution but okay for this project */
-  useEffect( ():void => {
-    navigation.addListener('beforeRemove', (e: any): void => e.preventDefault() )
-  }, [navigation])
-
   const evaluateAnswer = (index: number, answer: boolean): void => {
     const correct_answer = JSON.parse(questions[index].correct_answer.toLowerCase())
     console.log(`question #${index} correct answer ${correct_answer}, actual answer ${answer}`)
