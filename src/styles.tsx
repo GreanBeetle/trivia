@@ -93,15 +93,14 @@ export const SCOREBOARD_COMPONENT_STYLES: ObjectType = {
   container: { // DUPE OF FOOTERWRAPPER
     flex: 1,
     flexDirection: 'row',
-    alignSelf: 'center', // EXCEPT THAT ALIGN SELF IS EXTRA 
+    alignSelf: 'center', // EXCEPT THAT ALIGN SELF IS EXTRA
     alignItems: 'center',
     justifyContent: 'space-between'
   },
   bubble: {
     borderRadius: 100,
     height: 20,
-    width: 20,
-    backgroundColor: COLORS.actionGreen
+    width: 20
   }
 }
 
