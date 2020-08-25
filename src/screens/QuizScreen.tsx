@@ -33,7 +33,7 @@ const QuizScreen: React.FC<Props> = ({
   console.log('score on quiz screen', score) // REMOVE ME  
   return (
     <SafeAreaView style={STYLES.container}>
-      <ScoreBoard />
+      <ScoreBoard questions={questions} />
       <Swipe questions={questions} onSwipe={evaluateAnswer} />
       <Timer />
     </SafeAreaView>

@@ -15,6 +15,9 @@ export const GLOBAL_STYLES: ObjectType = {
     alignItems: 'center',
     justifyContent: 'center'
   },
+  standardWidth: {
+    width: deviceWindowWidth() - 40,
+  },
   justifiedText: {
     alignItems: 'flex-start'
   },
@@ -78,11 +81,27 @@ export const SWIPE_COMPONENT_STYLES: ObjectType = {
     shadowOpacity: 0.35,
     padding: 20
   },
-  footerWrapper: {
+  footerWrapper: { // DUPE OF CONTAINER IN SCOREBOARD COMPONENT
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between'
+  }
+}
+
+export const SCOREBOARD_COMPONENT_STYLES: ObjectType = {
+  container: { // DUPE OF FOOTERWRAPPER
+    flex: 1,
+    flexDirection: 'row',
+    alignSelf: 'center', // EXCEPT THAT ALIGN SELF IS EXTRA 
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  bubble: {
+    borderRadius: 100,
+    height: 20,
+    width: 20,
+    backgroundColor: COLORS.actionGreen
   }
 }
 

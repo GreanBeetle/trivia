@@ -1,11 +1,29 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import { GLOBAL_STYLES as STYLES } from '../styles'
+import { 
+  GLOBAL_STYLES as STYLES,
+  SCOREBOARD_COMPONENT_STYLES as styles 
+} from '../styles'
+import { ObjectType } from '../reusableTypes'
 
-const ScoreBoard = () => {
+interface Props {
+  questions: ObjectType
+}
+
+const ScoreBoard: React.FC<Props> = ({ questions }) => {
   return (
-    <View style={STYLES.standard}>
-      <Text >ScoreBoard</Text>
+    <View style={[STYLES.standardWidth, styles.container]}>
+      <View style={styles.bubble}></View>
+      <View style={styles.bubble}></View>
+      <View style={styles.bubble}></View>
+      <View style={styles.bubble}></View>
+      <View style={styles.bubble}></View>
+      <View style={styles.bubble}></View>
+      <View style={styles.bubble}></View>
+      <View style={styles.bubble}></View>
+      <View style={styles.bubble}></View>
+      <View style={styles.bubble}></View>
+
     </View>
   )
 }
