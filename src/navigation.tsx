@@ -8,7 +8,7 @@ const Stack = createStackNavigator()
 const InitialStackScreens = () => (
   <Stack.Navigator>
     <Stack.Screen name='Home' component={HomeScreen} options={{headerShown: false}} />
-    <Stack.Screen name='Quiz' component={QuizScreen} />
+    <Stack.Screen name='Quiz' component={QuizScreen} options={{headerShown: false}} />
   </Stack.Navigator>
 )
 
