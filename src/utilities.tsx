@@ -17,7 +17,7 @@ export const formatJSONquestions = async (questions: ObjectType[]) => {
     let arr = []
     const entities = new Entities()
     for (let question of questions) {
-      question['user_answer'] = null
+      question['user_answered_correctly'] = null
       question['correct_answer'] = JSON.parse(question['correct_answer'].toLowerCase())
       question['category'] = entities.decode(question['category']).toLowerCase()
       question['question'] = entities.decode(question['question']).toLowerCase()

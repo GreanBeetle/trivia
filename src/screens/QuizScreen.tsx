@@ -25,9 +25,12 @@ const QuizScreen: React.FC<Props> = ({
   // WHAT HAPPENS IF NO QUESTIONS? ADDRESS THIS
 
   const evaluateAnswer = (index: number, answer: boolean): void => {
-    const correct_answer = questions[index].correct_answer
-    console.log(`question #${index} correct answer ${correct_answer}, actual answer ${answer}`)
-    if (answer === correct_answer) updateQuizScore(score + 1)
+    // const correct_answer = questions[index].correct_answer
+    const answered_correctly = answer === questions[index].correct_answer
+    questions[index].user_answered_correctly = answered_correctly
+    console.log('EVALUATE ANSWER: USER_ANSWERED_CORRECTLY', questions[index].user_answered_correctly) // REMOVE 
+    console.log(`question #${index} correct answer ${questions[index].correct_answer}, actual answer ${answer}`) // PROBABLY REMOVE!    
+    if (answered_correctly) updateQuizScore(score + 1)
   } 
   
   console.log('score on quiz screen', score) // REMOVE ME!!!!!  
