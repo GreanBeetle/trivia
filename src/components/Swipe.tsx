@@ -39,7 +39,7 @@ const Swipe: React.FC<Props> = ({ questions, onSwipe }) => {
   ) 
 
   return (
-    <View style={STYLES.container}>
+    <View style={styles.swipeContainer}>
       <CardStack
         style={styles.content}
         renderNoMoreCards={() => <Text style={{ fontWeight: '700', fontSize: 18, color: 'gray' }}>done</Text>}
@@ -47,11 +47,7 @@ const Swipe: React.FC<Props> = ({ questions, onSwipe }) => {
         onSwipedRight={(index: number) => onSwipe(index, true)}
       >
         {cards}
-      </CardStack>
-      <View style={STYLES.standard}>
-        <Text style={STYLES.headerText}>yo yo i am the footer</Text>
-      </View>
-     
+      </CardStack>     
     </View>
   )
 

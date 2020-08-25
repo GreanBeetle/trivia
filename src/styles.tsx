@@ -60,6 +60,9 @@ export const HOME_SCREEN_STYLES: ObjectType = {
 }
 
 export const SWIPE_COMPONENT_STYLES: ObjectType = {
+  swipeContainer: {
+    flex: 2
+  },
   content: {
     flex: 5,
     alignItems: 'center',
