@@ -19,14 +19,14 @@ const Swipe: React.FC<Props> = ({ questions, onSwipe }) => {
   const entities = new Entities()
   const cards = questions.map((q: ObjectType) => (
     <Card style={styles.card} key={Math.random().toString()}>
-      <View style={STYLES.standard}>
-        <Text style={STYLES.subHeaderText}>
-          {entities.decode(q.category)}
+      <View style={STYLES.justifiedText}>
+        <Text style={STYLES.largeText}>
+          category: {(entities.decode(q.category)).toLowerCase()}
         </Text>
       </View>
-      <View style={STYLES.standard}>
-        <Text style={STYLES.regularText}>
-          {entities.decode(q.question)}
+      <View style={STYLES.justifiedText}>
+        <Text style={STYLES.largeText}>
+          question: {(entities.decode(q.question)).toLowerCase()}
         </Text>
       </View>
     </Card>)

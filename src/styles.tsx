@@ -15,6 +15,10 @@ export const GLOBAL_STYLES: ObjectType = {
     alignItems: 'center',
     justifyContent: 'center'
   },
+  justifiedText: {
+    flex: 1,
+    alignItems: 'flex-start'
+  },
   smallText: {
     fontFamily: 'Roboto_400Regular',
     fontSize: 12
@@ -59,7 +63,7 @@ export const SWIPE_COMPONENT_STYLES: ObjectType = {
   card:{
     width: deviceWindowWidth() - 40,
     height: 400,
-    backgroundColor: COLORS.red,
+    backgroundColor: COLORS.white,
     borderRadius: 5,
     shadowColor: 'rgba(0,0,0,0.5)',
     shadowOffset: { width: 0, height: 2 },
