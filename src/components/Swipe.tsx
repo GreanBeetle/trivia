@@ -5,7 +5,8 @@ import {
   SWIPE_COMPONENT_STYLES as styles 
 } from '../styles'
 import CardStack, { Card } from 'react-native-card-stack-swiper'
-import { ObjectType } from '../reusableTypes' 
+import { ObjectType } from '../reusableTypes'
+import { swipeComponentCopy as COPY } from '../copy' 
 const Entities = require('html-entities').AllHtmlEntities 
 
 interface Props {
@@ -23,10 +24,16 @@ const Swipe: React.FC<Props> = ({ questions, onSwipe }) => {
           category: {(entities.decode(q.category)).toLowerCase()}
         </Text>
       </View>
-      <View style={[STYLES.justifiedText, {flex: 3}]}>
+      <View style={[STYLES.justifiedText, {flex: 2}]}>
         <Text style={STYLES.largeText}>
           {(entities.decode(q.question)).toLowerCase()}
         </Text>
+      </View>
+      <View style={styles.footerWrapper}>
+        <Text style={[STYLES.red, STYLES.subHeaderText]}>&larr;</Text>
+        <Text style={[STYLES.red, STYLES.largeText]}>{COPY.false}</Text>
+        <Text style={[STYLES.green, STYLES.largeText]}>{COPY.true}</Text>
+        <Text style={[STYLES.green, STYLES.subHeaderText]}>&rarr;</Text>
       </View>
     </Card>)
   ) 

@@ -40,6 +40,12 @@ export const GLOBAL_STYLES: ObjectType = {
   },
   white: {
     color: COLORS.white
+  },
+  red: {
+    color: COLORS.red
+  },
+  green: {
+    color: COLORS.actionGreen
   }
 }
 
@@ -59,15 +65,21 @@ export const SWIPE_COMPONENT_STYLES: ObjectType = {
     alignItems: 'center',
     justifyContent: 'center'
   },
-  card:{
+  card: {
     width: deviceWindowWidth() - 40,
-    height: 400,
+    height: 425,
     backgroundColor: COLORS.white,
     borderRadius: 5,
     shadowColor: 'rgba(0,0,0,0.5)',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.35,
     padding: 20
+  },
+  footerWrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   }
 }
 

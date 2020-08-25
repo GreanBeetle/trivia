@@ -6,3 +6,8 @@ export const homeScreenCopy = {
 export const quizScreenCopy = {
   title: 'Quiz'
 }
+
+export const swipeComponentCopy = {
+  true: 'true',
+  false: 'false'
+}
