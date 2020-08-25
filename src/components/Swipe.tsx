@@ -8,7 +8,6 @@ import CardStack, { Card } from 'react-native-card-stack-swiper'
 import { ObjectType } from '../reusableTypes' 
 const Entities = require('html-entities').AllHtmlEntities 
 
-
 interface Props {
   questions: ObjectType,
   onSwipe: (index: number, answer: boolean) => void
@@ -19,14 +18,14 @@ const Swipe: React.FC<Props> = ({ questions, onSwipe }) => {
   const entities = new Entities()
   const cards = questions.map((q: ObjectType) => (
     <Card style={styles.card} key={Math.random().toString()}>
-      <View style={STYLES.justifiedText}>
+      <View style={[STYLES.justifiedText, STYLES.container]}>
         <Text style={STYLES.largeText}>
           category: {(entities.decode(q.category)).toLowerCase()}
         </Text>
       </View>
-      <View style={STYLES.justifiedText}>
+      <View style={[STYLES.justifiedText, {flex: 3}]}>
         <Text style={STYLES.largeText}>
-          question: {(entities.decode(q.question)).toLowerCase()}
+          {(entities.decode(q.question)).toLowerCase()}
         </Text>
       </View>
     </Card>)

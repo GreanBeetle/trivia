@@ -16,7 +16,6 @@ export const GLOBAL_STYLES: ObjectType = {
     justifyContent: 'center'
   },
   justifiedText: {
-    flex: 1,
     alignItems: 'flex-start'
   },
   smallText: {
@@ -69,16 +68,6 @@ export const SWIPE_COMPONENT_STYLES: ObjectType = {
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.35,
     padding: 20
-  },
-  card1: { backgroundColor: COLORS.accentAqua },
-  card2: { backgroundColor: COLORS.accentLightBlue },
-  label: {
-    lineHeight: 400,
-    textAlign: 'center',
-    fontSize: 55,
-    fontFamily: 'System',
-    color: '#ffffff',
-    backgroundColor: 'transparent'
   }
 }
 
