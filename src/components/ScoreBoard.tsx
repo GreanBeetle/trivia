@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { View } from 'react-native'
 import { 
   GLOBAL_STYLES as STYLES,
@@ -13,10 +13,11 @@ interface Props {
 
 const ScoreBoard: React.FC<Props> = ({ questions }) => {
 
-  // const [scoreList, setScoreList] = useState(scoreboard) // HERE! POSSIBLY HACKERY. POSSIBLY NOT
-  // useEffect(() => { setScoreList(scoreboard) }, [scoreboard]) // HERE! POSSIBLY HACKERY. POSSIBLY NOT 
-  
+   
+  console.log('SCOREBOARD! questions', questions) // REMOVE
+
   const bubbleColor = (correctAnswer: boolean): { backgroundColor: string } => {
+    console.log('bubble color!') // REMOVE
     switch(correctAnswer) {
       case null: 
         return { backgroundColor: COLORS.textGray }
@@ -30,10 +31,10 @@ const ScoreBoard: React.FC<Props> = ({ questions }) => {
   }
 
   const bubbles = questions.map((q: ObjectType) => (
-    <View style={[styles.bubble, bubbleColor(q.answeredCorrectly)]} key={q.index}></View>
+    <View style={[styles.bubble, bubbleColor(q.user_answered_correctly)]} key={q.index}></View>
   ))
   
-  console.log('rendering bubbles ...')
+  console.log('rendering bubbles ...') // REMOVE
   return (
     <View style={[STYLES.standardWidth, styles.container]}>
       {bubbles} 
