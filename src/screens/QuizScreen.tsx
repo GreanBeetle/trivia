@@ -13,7 +13,7 @@ interface Props {
   questions: ObjectType,
   score: number,
   updateQuizScore: (score: number) => ActionType,
-  updateUserAnsweredCorrectly: (index: number, answeredCorrectly: boolean) => ActionType    
+  updateUserAnsweredCorrectly: (index: number, answeredCorrectly: string) => ActionType    
 }
 
 const QuizScreen: React.FC<Props> = ({ 
@@ -23,15 +23,22 @@ const QuizScreen: React.FC<Props> = ({
   updateQuizScore, 
   updateUserAnsweredCorrectly
 }) => {  
+
+  console.log('score on quiz', score) // REMOVE
+  console.log('questions on quiz', questions) // REMOVE
+
   // WHAT HAPPENS IF NO QUESTIONS? ADDRESS THIS
   // MOVE THIS BUSINESS LOGIC ELSEWHERE? PERHAPS NOT BECAUSE WE'RE TOYING WITH GLOBAL STATE ...
-  const evaluateAnswer = (index: number, answer: boolean): void => {
-    const answeredCorrectly = answer === questions[index].correct_answer
-    updateUserAnsweredCorrectly(index, answeredCorrectly) // ADDED
-    if (answeredCorrectly) updateQuizScore(score + 1)
+  const evaluateAnswer = async (index: number, answer: boolean) => {
+    let answeredCorrectly = answer === questions[index].correct_answer
+    answeredCorrectly = answeredCorrectly ? 'yes' : 'no'
+    console.log('answered correctly in evaluate answer', answeredCorrectly)
+    await updateUserAnsweredCorrectly(index, answeredCorrectly) // ADDED
+    // if (answeredCorrectly === 'yes') updateQuizScore(score + 1)
+    updateQuizScore(score + 1)
+    
   }
   
-  console.log('score on quiz screen', score) // REMOVE ME!!!!!  
   return (
     <SafeAreaView style={STYLES.container}>
       <ScoreBoard questions={questions} />
@@ -47,4 +54,4 @@ const mapStateToProps = (state: ObjectType) => {
   return { isGetting, getQuestionsError, questions, score }
 }
 
-export default connect(mapStateToProps, { updateQuizScore, updateUserAnsweredCorrectly })(QuizScreen)
+export default connect(mapStateToProps, { updateQuizScore, updateUserAnsweredCorrectly })(React.memo(QuizScreen)) // ADDED React.Memo

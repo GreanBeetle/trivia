@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View } from 'react-native'
 import { 
   GLOBAL_STYLES as STYLES,
@@ -14,15 +14,15 @@ interface Props {
 const ScoreBoard: React.FC<Props> = ({ questions }) => {
 
    
-  console.log('SCOREBOARD! questions', questions) // REMOVE
-
-  const bubbleColor = (correctAnswer: boolean): { backgroundColor: string } => {
+  
+  const bubbleColor = (correctAnswer: string | null): { backgroundColor: string } => {
+    console.log('bubble color correct answer', correctAnswer)
     switch(correctAnswer) {
       case null: 
         return { backgroundColor: COLORS.textGray }
-      case true: 
+      case 'yes': 
         return { backgroundColor: COLORS.actionGreen }
-      case false: 
+      case 'no': 
         return { backgroundColor: COLORS.red }      
       default: 
         return { backgroundColor: COLORS.textGray }
@@ -30,7 +30,7 @@ const ScoreBoard: React.FC<Props> = ({ questions }) => {
   }
 
   const bubbles = questions.map((q: ObjectType) => (
-    <View style={[styles.bubble, bubbleColor(q.user_answered_correctly)]} key={q.index}></View>
+    <View style={[styles.bubble, bubbleColor(q.user_answered_correctly)]} key={Math.random().toString()}></View>
   ))
   
   console.log('rendering bubbles ...') // REMOVE
@@ -42,4 +42,8 @@ const ScoreBoard: React.FC<Props> = ({ questions }) => {
 
 }
 
-export default ScoreBoard
+export default React.memo(ScoreBoard, (prevProps: any, nextProps: any) => { // ADDED REMOVE?
+  console.log('prevProps', prevProps)
+  console.log('nextProps', nextProps)
+  return false // ALWAYS rerender when props change 
+})
