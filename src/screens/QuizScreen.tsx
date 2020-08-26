@@ -22,10 +22,7 @@ const QuizScreen: React.FC<Props> = ({
   updateQuizScore
 }) => {
 
-  // const [localQuestions, updateLocalQuestions] = useState(questions)
-  // useEffect(() => console.log('local questions updated'), [localQuestions])
-  // const [scoreList, setScoreList] = useState(scoreboard) // HERE! POSSIBLY HACKERY. POSSIBLY NOT
-  // useEffect(() => { setScoreList(scoreboard) }, [scoreboard]) // HERE! POSSIBLY HACKERY. POSSIBLY NOT
+
   
   // WHAT HAPPENS IF NO QUESTIONS? ADDRESS THIS
 

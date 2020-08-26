@@ -1,7 +1,8 @@
 import {
   GET_QUESTIONS_REQUEST,
   GET_QUESTIONS_SUCCESS,
-  GET_QUESTIONS_FAILURE
+  GET_QUESTIONS_FAILURE,
+  UPDATE_USER_ANSWERED_CORRECTLY // ADDED 
 } from './types'
 import { 
   ObjectType, 
@@ -35,3 +36,11 @@ export const getQuestions = (): ObjectType => {
     }
   }
 }
+
+// ***************************************
+// ADDED *********************************
+export const updateUserAnsweredCorrectly = (index: number, answeredCorrectly: boolean) => {
+  return { type: UPDATE_USER_ANSWERED_CORRECTLY, payload: { index, answeredCorrectly } }
+}
+// ADDED *********************************
+// ***************************************
