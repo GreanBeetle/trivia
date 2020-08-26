@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native'
 import { GLOBAL_STYLES as STYLES } from '../styles'
-import { Swipe } from '../components'
+import { Swipe, ScoreBoard, Timer } from '../components'
 import { connect } from 'react-redux'
 import { ObjectType, ActionType } from '../reusableTypes'
 import { updateQuizScore } from '../redux/actions'
@@ -17,30 +17,34 @@ interface Props {
 
 const QuizScreen: React.FC<Props> = ({ 
   navigation,
-  isGetting, // NO USED VARS, ADD ERROR HANDLING COMPONENT I.E. ERROR.TSX
-  getQuestionsError, // NO UNUSED VARS, ADD ERROR HANDLING COMPONENT I.E. ERROR.TSX
-  questions, // NO UNUSED VARS, ADD ERROR HANDLING COMPONENT I.E. ERROR.TSX
+  questions, 
   score,
   updateQuizScore
 }) => {
-  
-  /* hook to prevent user from swiping back to previous screen
-  see react navigation 5 documentation "preventing-going-back"
-  kind of an ugly solution but okay for this project */
-  useEffect( ():void => {
-    navigation.addListener('beforeRemove', (e: any): void => e.preventDefault() )
-  }, [navigation])
 
-  const evaluateAnswer = (index: number, answer: boolean): void => {
-    const correct_answer = JSON.parse(questions[index].correct_answer.toLowerCase())
-    console.log(`question #${index} correct answer ${correct_answer}, actual answer ${answer}`)
-    if (answer === correct_answer) updateQuizScore(score + 1)
-  } 
+  // const [localQuestions, updateLocalQuestions] = useState(questions)
+  // useEffect(() => console.log('local questions updated'), [localQuestions])
+  // const [scoreList, setScoreList] = useState(scoreboard) // HERE! POSSIBLY HACKERY. POSSIBLY NOT
+  // useEffect(() => { setScoreList(scoreboard) }, [scoreboard]) // HERE! POSSIBLY HACKERY. POSSIBLY NOT
   
-  console.log('score on quiz screen', score) // REMOVE ME  
+  // WHAT HAPPENS IF NO QUESTIONS? ADDRESS THIS
+
+  // MOVE THIS BUSINESS LOGIC ELSEWHERE? PERHAPS NOT BECAUSE WE'RE TOYING WITH GLOBAL STATE ...
+  const evaluateAnswer = (index: number, answer: boolean): void => {
+    const answeredCorrectly = answer === questions[index].correct_answer
+    questions[index].user_answered_correctly = answeredCorrectly
+    // console.log('local questions BEFORE update but AFTER change', localQuestions) // REMOVE
+    // updateLocalQuestions(localQuestions) 
+    // console.log('local questions AFTER update and AFTER local change', localQuestions) // REMOVE
+    if (answeredCorrectly) updateQuizScore(score + 1)
+  }
+  
+  console.log('score on quiz screen', score) // REMOVE ME!!!!!  
   return (
     <SafeAreaView style={STYLES.container}>
+      <ScoreBoard questions={questions} />
       <Swipe questions={questions} onSwipe={evaluateAnswer} />
+      <Timer />
     </SafeAreaView>
   )
 }

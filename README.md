@@ -16,12 +16,9 @@ If you haven't already, install the [Expo Client](https://expo.io/) on your phon
 
 Be sure that your phone and computer are on the same wireless network. 
 
-Run the following commands on your comp 
+Run the following command on your comp 
 
-- `git clone https://github.com/GreanBeetle/trivia`
-- `cd trivia`
-- `npm install` 
-- `npm start` or `expo start`
+`git clone https://github.com/GreanBeetle/trivia && cd trivia && npm install && npm start`
 
 For iOS, scan the resulting QR code with the camera's built-in scanner. For Android, use the Expo app itself to scan the QR code. 
 
@@ -29,14 +26,14 @@ For iOS, scan the resulting QR code with the camera's built-in scanner. For Andr
 
 ### A note on TypeScript usage 
 
-TypeScript was used for much of the business logic in the application. However, due to time constraints, I did not attempt to use TypeScript when defining things like functional components or implementing the Navigation architecture. These are implemented using straight up JS. FIX THIS 
+_WIP_ TypeScript was used for much of the business logic in the application. _WIP_
 
 ### A note on Expo 
 
-As required by the specs, this project uses Expo. For the sake of posterity, however, I want to note that, for the following reasons, I don't typically use Expo.  
+_WIP_ As required by the specs, this project uses Expo. However, for the following reasons I typically don't use Expo. _WIP_  
 
 - In my opinion, a minimum knowledge of Xcode and the use of certificates and profiles is critical for a React Native Developer. Using Expo, developers aren't exposed to this. 
-- I feel similarly about Android Studio. 
+- Same for Android Studio. 
 - Reproducing and troubleshooting real-world bugs involving different mobile OSes or, for example, dated or rarely-seen hardware is more difficult with Expo.  
 - Expo makes it hard to debug network issues related to WiFi or Data. 
 - Developing applications that make extensive use of phone hardware - such as bluetooth or NFC modules - is unnecessarily difficult with Exp.  
