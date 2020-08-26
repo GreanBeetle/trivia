@@ -24,11 +24,12 @@ const QuizScreen: React.FC<Props> = ({
   
   // WHAT HAPPENS IF NO QUESTIONS? ADDRESS THIS
 
+  // MOVE THIS BUSINESS LOGIC ELSEWHERE? PERHAPS NOT BECAUSE WE'RE TOYING WITH GLOBAL STATE ...
   const evaluateAnswer = (index: number, answer: boolean): void => {
     const answered_correctly = answer === questions[index].correct_answer
     questions[index].user_answered_correctly = answered_correctly
     if (answered_correctly) updateQuizScore(score + 1)
-  } 
+  }
   
   console.log('score on quiz screen', score) // REMOVE ME!!!!!  
   return (

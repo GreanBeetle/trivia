@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { View } from 'react-native'
 import { 
   GLOBAL_STYLES as STYLES,
@@ -12,6 +12,9 @@ interface Props {
 }
 
 const ScoreBoard: React.FC<Props> = ({ questions }) => {
+
+  const [questionList, setQuestionList] = useState(questions) // HERE! POSSIBLY HACKERY. POSSIBLY NOT
+  useEffect(() => { setQuestionList(questions) }, [questions]) // HERE! POSSIBLY HACKERY. POSSIBLY NOT 
   
   const bubbleColor = (userAnsweredCorrectly: boolean): { backgroundColor: string } => {
     const gray = { backgroundColor: COLORS.textGray }
@@ -29,7 +32,7 @@ const ScoreBoard: React.FC<Props> = ({ questions }) => {
     }
   }
 
-  const bubbles = questions.map((q: ObjectType) => (
+  const bubbles = questionList.map((q: ObjectType) => (
     <View style={[styles.bubble, bubbleColor(q.user_answered_correctly)]} key={q.question}></View>
   ))
   
