@@ -1,4 +1,9 @@
-import { UPDATE_QUIZ_SCORE, RESET_QUIZ_SCORE } from './types'
+import { 
+  UPDATE_QUIZ_SCORE, 
+  RESET_QUIZ_SCORE,
+  UPDATE_SCOREBOARD,
+  RESET_SCOREBOARD 
+} from './types'
 import { ActionType } from '../../reusableTypes'
 
 export const updateQuizScore = (score: number): ActionType => {

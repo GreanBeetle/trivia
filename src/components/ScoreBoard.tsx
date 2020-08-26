@@ -17,18 +17,15 @@ const ScoreBoard: React.FC<Props> = ({ questions }) => {
   useEffect(() => { setQuestionList(questions) }, [questions]) // HERE! POSSIBLY HACKERY. POSSIBLY NOT 
   
   const bubbleColor = (userAnsweredCorrectly: boolean): { backgroundColor: string } => {
-    const gray = { backgroundColor: COLORS.textGray }
-    const green = { backgroundColor: COLORS.actionGreen }
-    const red = { backgroundColor: COLORS.red }
     switch(userAnsweredCorrectly) {
       case null: 
-        return gray
+        return { backgroundColor: COLORS.textGray }
       case true: 
-        return green
+        return { backgroundColor: COLORS.actionGreen }
       case false: 
-        return red      
+        return { backgroundColor: COLORS.red }      
       default: 
-        return gray
+        return { backgroundColor: COLORS.textGray }
     }
   }
 
