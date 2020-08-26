@@ -17,7 +17,6 @@ const ScoreBoard: React.FC<Props> = ({ questions }) => {
   console.log('SCOREBOARD! questions', questions) // REMOVE
 
   const bubbleColor = (correctAnswer: boolean): { backgroundColor: string } => {
-    console.log('bubble color!') // REMOVE
     switch(correctAnswer) {
       case null: 
         return { backgroundColor: COLORS.textGray }

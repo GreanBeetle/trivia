@@ -26,6 +26,7 @@ const getQuestionsReducer = (
       return { ...state, isGetting: false, getQuestionsError: action.payload }
     case UPDATE_USER_ANSWERED_CORRECTLY: // ADDED
       let { questions } = state
+      console.log('questions[action.payload.index].user_answered_correctly', questions[action.payload.index].user_answered_correctly)
       questions[action.payload.index].user_answered_correctly = action.payload.answeredCorrectly // FIX 
       console.log('reducer questions, after mutation', questions) // REMOVE 
       return { ...state, questions } // ADDED 

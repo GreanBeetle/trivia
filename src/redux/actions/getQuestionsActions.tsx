@@ -40,6 +40,7 @@ export const getQuestions = (): ObjectType => {
 // ***************************************
 // ADDED *********************************
 export const updateUserAnsweredCorrectly = (index: number, answeredCorrectly: boolean) => {
+  console.log('ACTION update user answer', index, answeredCorrectly)
   return { type: UPDATE_USER_ANSWERED_CORRECTLY, payload: { index, answeredCorrectly } }
 }
 // ADDED *********************************
