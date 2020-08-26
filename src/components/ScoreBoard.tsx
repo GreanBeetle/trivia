@@ -8,13 +8,13 @@ import { ObjectType } from '../reusableTypes'
 import COLORS from '../colors'
 
 interface Props {
-  scoreboard: ObjectType[]
+  questions: ObjectType
 }
 
-const ScoreBoard: React.FC<Props> = ({ scoreboard }) => {
+const ScoreBoard: React.FC<Props> = ({ questions }) => {
 
-  const [scoreList, setScoreList] = useState(scoreboard) // HERE! POSSIBLY HACKERY. POSSIBLY NOT
-  useEffect(() => { setScoreList(scoreboard) }, [scoreboard]) // HERE! POSSIBLY HACKERY. POSSIBLY NOT 
+  // const [scoreList, setScoreList] = useState(scoreboard) // HERE! POSSIBLY HACKERY. POSSIBLY NOT
+  // useEffect(() => { setScoreList(scoreboard) }, [scoreboard]) // HERE! POSSIBLY HACKERY. POSSIBLY NOT 
   
   const bubbleColor = (correctAnswer: boolean): { backgroundColor: string } => {
     switch(correctAnswer) {
@@ -29,8 +29,8 @@ const ScoreBoard: React.FC<Props> = ({ scoreboard }) => {
     }
   }
 
-  const bubbles = scoreList.map((s: ObjectType) => (
-    <View style={[styles.bubble, bubbleColor(s.answeredCorrectly)]} key={s.index}></View>
+  const bubbles = questions.map((q: ObjectType) => (
+    <View style={[styles.bubble, bubbleColor(q.answeredCorrectly)]} key={q.index}></View>
   ))
   
   console.log('rendering bubbles ...')

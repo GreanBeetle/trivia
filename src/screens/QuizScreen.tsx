@@ -12,18 +12,14 @@ interface Props {
   getQuestionsError: ObjectType,
   questions: ObjectType,
   score: number,
-  updateQuizScore: (score: number) => ActionType,
-  updateScoreboard: (index: number, answeredCorrectly: boolean) => ActionType,
-  scoreboard: ObjectType[]    
+  updateQuizScore: (score: number) => ActionType    
 }
 
 const QuizScreen: React.FC<Props> = ({ 
   navigation,
   questions, 
   score,
-  updateQuizScore,
-  updateScoreboard,
-  scoreboard
+  updateQuizScore
 }) => {
   
   // WHAT HAPPENS IF NO QUESTIONS? ADDRESS THIS
@@ -31,17 +27,14 @@ const QuizScreen: React.FC<Props> = ({
   // MOVE THIS BUSINESS LOGIC ELSEWHERE? PERHAPS NOT BECAUSE WE'RE TOYING WITH GLOBAL STATE ...
   const evaluateAnswer = (index: number, answer: boolean): void => {
     const answeredCorrectly = answer === questions[index].correct_answer
-    // questions[index].user_answered_correctly = answered_correctly
-    updateScoreboard(index, answeredCorrectly)
+    questions[index].user_answered_correctly = answeredCorrectly
     if (answeredCorrectly) updateQuizScore(score + 1)
   }
-
-
   
   console.log('score on quiz screen', score) // REMOVE ME!!!!!  
   return (
     <SafeAreaView style={STYLES.container}>
-      <ScoreBoard scoreboard={scoreboard} />
+      <ScoreBoard questions={questions} />
       <Swipe questions={questions} onSwipe={evaluateAnswer} />
       <Timer />
     </SafeAreaView>

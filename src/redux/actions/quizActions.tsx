@@ -1,8 +1,6 @@
 import { 
   UPDATE_QUIZ_SCORE, 
-  RESET_QUIZ_SCORE,
-  UPDATE_SCOREBOARD,
-  RESET_SCOREBOARD 
+  RESET_QUIZ_SCORE
 } from './types'
 import { ActionType } from '../../reusableTypes'
 
@@ -14,12 +12,6 @@ export const resetQuizScore = (): ActionType => {
   return { type: RESET_QUIZ_SCORE }
 }
 
-export const updateScoreboard = (index: number, answeredCorrectly: boolean): ActionType => {
-  return { type: UPDATE_SCOREBOARD, payload: {index, answeredCorrectly} }
-}
 
-export const resetScoreboard = (): ActionType => {
-  return { type: RESET_SCOREBOARD }
-}
 
 
