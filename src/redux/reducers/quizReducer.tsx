@@ -6,7 +6,13 @@ import {
 } from '../actions/types'
 import { ActionType, ObjectType } from '../../reusableTypes'
 
-const initialState: {score: number, scoreBoard: ObjectType[]} = { score: 0, scoreBoard: [] }
+const initialState: {
+  score: number, 
+  scoreboard: ObjectType[]
+} = { 
+  score: 0, 
+  scoreboard: [] 
+}
 
 // ADD TYPESCRIPT RETURN TYPE? 
 const quizReducer = (state = initialState, action: ActionType) => {
@@ -16,12 +22,12 @@ const quizReducer = (state = initialState, action: ActionType) => {
     case RESET_QUIZ_SCORE: 
       return { ...state, score: 0 }
     case UPDATE_SCOREBOARD:
-      const { scoreBoard } = state
-      scoreBoard[action.payload.index] = { 
+      const { scoreboard } = state
+      scoreboard[action.payload.index] = { 
         answeredCorrectly: action.payload.answeredCorrectly 
       } 
-      console.log('updated scoreboard', scoreBoard) 
-      return { ...state, scoreBoard }
+      console.log('updated scoreboard', scoreboard) 
+      return { ...state, scoreboard }
     case RESET_SCOREBOARD: 
       return { ...state, scoreBoard: [] }
     default: 
