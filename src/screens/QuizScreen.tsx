@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { SafeAreaView } from 'react-native'
 import { GLOBAL_STYLES as STYLES } from '../styles'
 import { Swipe, ScoreBoard, Timer } from '../components'
@@ -10,7 +10,7 @@ interface Props {
   navigation: any,
   isGetting: boolean,
   getQuestionsError: ObjectType,
-  questions: ObjectType,
+  questions: ObjectType, // should this be ObjectType[]? yes it should 
   score: number,
   totalQuestionsAnswered: number,
   updateQuizScore: (score: number) => ActionType,
