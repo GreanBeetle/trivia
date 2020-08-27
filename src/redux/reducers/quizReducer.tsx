@@ -4,13 +4,12 @@ import {
 } from '../actions/types'
 import { ActionType } from '../../reusableTypes'
 
-const initialState: { score: number } = { score: 0 }
+const initialState: { score: number, totalQuestionsAnswered: number } = { score: 0, totalQuestionsAnswered: 0 }
 
-// ADD TYPESCRIPT RETURN TYPE? 
 const quizReducer = (state = initialState, action: ActionType) => {
   switch (action.type) {
-    case UPDATE_QUIZ_SCORE: 
-      return { ...state, score: action.payload }
+    case UPDATE_QUIZ_SCORE:
+      return { ...state, score: action.payload, totalQuestionsAnswered: state.totalQuestionsAnswered + 1 }
     case RESET_QUIZ_SCORE: 
       return { ...state, score: 0 }
     default: 

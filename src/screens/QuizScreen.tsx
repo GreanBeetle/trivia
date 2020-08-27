@@ -4,7 +4,7 @@ import { GLOBAL_STYLES as STYLES } from '../styles'
 import { Swipe, ScoreBoard, Timer } from '../components'
 import { connect } from 'react-redux'
 import { ObjectType, ActionType } from '../reusableTypes'
-import { updateQuizScore } from '../redux/actions'
+import { updateQuizScore, updateUserAnsweredCorrectly } from '../redux/actions'
 
 interface Props {
   navigation: any,
@@ -12,34 +12,30 @@ interface Props {
   getQuestionsError: ObjectType,
   questions: ObjectType,
   score: number,
-  updateQuizScore: (score: number) => ActionType    
+  totalQuestionsAnswered: number,
+  updateQuizScore: (score: number) => ActionType,
+  updateUserAnsweredCorrectly: (index: number, answeredCorrectly: boolean) => ActionType    
 }
 
 const QuizScreen: React.FC<Props> = ({ 
   navigation,
   questions, 
   score,
-  updateQuizScore
-}) => {
+  totalQuestionsAnswered, // hackery! use this or ensure something else updates every time 
+  updateQuizScore, 
+  updateUserAnsweredCorrectly
+}) => {  
+  console.log('questions answered', totalQuestionsAnswered) // keep until hackery is fixed  
 
-  // const [localQuestions, updateLocalQuestions] = useState(questions)
-  // useEffect(() => console.log('local questions updated'), [localQuestions])
-  // const [scoreList, setScoreList] = useState(scoreboard) // HERE! POSSIBLY HACKERY. POSSIBLY NOT
-  // useEffect(() => { setScoreList(scoreboard) }, [scoreboard]) // HERE! POSSIBLY HACKERY. POSSIBLY NOT
+  // what happens if component receives no questions? address this
   
-  // WHAT HAPPENS IF NO QUESTIONS? ADDRESS THIS
-
-  // MOVE THIS BUSINESS LOGIC ELSEWHERE? PERHAPS NOT BECAUSE WE'RE TOYING WITH GLOBAL STATE ...
-  const evaluateAnswer = (index: number, answer: boolean): void => {
-    const answeredCorrectly = answer === questions[index].correct_answer
-    questions[index].user_answered_correctly = answeredCorrectly
-    // console.log('local questions BEFORE update but AFTER change', localQuestions) // REMOVE
-    // updateLocalQuestions(localQuestions) 
-    // console.log('local questions AFTER update and AFTER local change', localQuestions) // REMOVE
-    if (answeredCorrectly) updateQuizScore(score + 1)
+  const evaluateAnswer = (index: number, answer: boolean) => {
+    let answeredCorrectly = answer === questions[index].correct_answer 
+    const newScore = answeredCorrectly ? score + 1 : score // keep until hackery is fixed, then refactor to if (answeredCorrectly) updateQuizScore(score + 1)
+    updateUserAnsweredCorrectly(index, answeredCorrectly) 
+    updateQuizScore(newScore)
   }
   
-  console.log('score on quiz screen', score) // REMOVE ME!!!!!  
   return (
     <SafeAreaView style={STYLES.container}>
       <ScoreBoard questions={questions} />
@@ -51,8 +47,8 @@ const QuizScreen: React.FC<Props> = ({
 
 const mapStateToProps = (state: ObjectType) => {
   const { isGetting, getQuestionsError, questions } = state.getQuestions
-  const { score } = state.quiz
-  return { isGetting, getQuestionsError, questions, score }
+  const { score, totalQuestionsAnswered } = state.quiz
+  return { isGetting, getQuestionsError, questions, score, totalQuestionsAnswered }
 }
 
-export default connect(mapStateToProps, { updateQuizScore })(QuizScreen)
+export default connect(mapStateToProps, { updateQuizScore, updateUserAnsweredCorrectly })(QuizScreen) 

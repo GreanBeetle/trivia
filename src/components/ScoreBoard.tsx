@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View } from 'react-native'
 import { 
   GLOBAL_STYLES as STYLES,
@@ -12,12 +12,8 @@ interface Props {
 }
 
 const ScoreBoard: React.FC<Props> = ({ questions }) => {
-
-   
-  console.log('SCOREBOARD! questions', questions) // REMOVE
-
-  const bubbleColor = (correctAnswer: boolean): { backgroundColor: string } => {
-    console.log('bubble color!') // REMOVE
+  
+  const bubbleColor = (correctAnswer: boolean | null): { backgroundColor: string } => {
     switch(correctAnswer) {
       case null: 
         return { backgroundColor: COLORS.textGray }
@@ -31,10 +27,9 @@ const ScoreBoard: React.FC<Props> = ({ questions }) => {
   }
 
   const bubbles = questions.map((q: ObjectType) => (
-    <View style={[styles.bubble, bubbleColor(q.user_answered_correctly)]} key={q.index}></View>
+    <View style={[styles.bubble, bubbleColor(q.user_answered_correctly)]} key={Math.random().toString()}></View> // turn Math.random().toString() into a utility method! use this on Swipe Component too
   ))
   
-  console.log('rendering bubbles ...') // REMOVE
   return (
     <View style={[STYLES.standardWidth, styles.container]}>
       {bubbles} 
