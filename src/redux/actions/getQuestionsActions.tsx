@@ -39,17 +39,16 @@ export const getQuestions = (): ObjectType => {
 
 // ***************************************
 // ADDED *********************************
-export const updateUserAnsweredCorrectly = (index: number, answeredCorrectly: string) => {
-  return async (dispatch: any) => {
-    try {
-      console.log('ACTION update user answer', index, answeredCorrectly)
-      dispatch({ type: UPDATE_USER_ANSWERED_CORRECTLY, payload: { index, answeredCorrectly }}) 
-    } catch (error) {
-      console.log('error in updateUserAnsweredCorrectly')
-    }
-  }
+export const updateUserAnsweredCorrectly = (index: number, answeredCorrectly: boolean) => {
+  // return async (dispatch: any) => {
+  //   try {
+  //     dispatch({ type: UPDATE_USER_ANSWERED_CORRECTLY, payload: { index, answeredCorrectly }}) 
+  //   } catch (error) {
+  //     console.log('error in updateUserAnsweredCorrectly')
+  //   }
+  // }
   //console.log('ACTION update user answer', index, answeredCorrectly)
-  //return { type: UPDATE_USER_ANSWERED_CORRECTLY, payload: { index, answeredCorrectly } }
+  return { type: UPDATE_USER_ANSWERED_CORRECTLY, payload: { index, answeredCorrectly } }
 }
 // ADDED *********************************
 // ***************************************

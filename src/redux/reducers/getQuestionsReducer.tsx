@@ -12,11 +12,7 @@ const initialState = {
   questions: [] 
 }
 
-// ADD TYPESCRIPT RETURN TYPE? 
-const getQuestionsReducer = (
-  state = initialState, 
-  action: ActionType
-) => {
+const getQuestionsReducer = ( state = initialState, action: ActionType ) => {
   switch(action.type) {
     case GET_QUESTIONS_REQUEST:
       return { ...state, isGetting: true }
@@ -24,12 +20,10 @@ const getQuestionsReducer = (
       return { ...state, isGetting: false, questions: action.payload }
     case GET_QUESTIONS_FAILURE: 
       return { ...state, isGetting: false, getQuestionsError: action.payload }
-    case UPDATE_USER_ANSWERED_CORRECTLY: // ADDED
+    case UPDATE_USER_ANSWERED_CORRECTLY: 
       let { questions } = state
-      console.log('questions[action.payload.index].user_answered_correctly', questions[action.payload.index].user_answered_correctly)
-      questions[action.payload.index].user_answered_correctly = action.payload.answeredCorrectly // FIX 
-      console.log('reducer questions, after mutation', questions) // REMOVE 
-      return { ...state, questions } // ADDED 
+      questions[action.payload.index].user_answered_correctly = action.payload.answeredCorrectly // fix 
+      return { ...state, questions }  
     default: 
       return state
   }

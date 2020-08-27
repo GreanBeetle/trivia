@@ -12,31 +12,28 @@ interface Props {
   getQuestionsError: ObjectType,
   questions: ObjectType,
   score: number,
+  totalQuestionsAnswered: number,
   updateQuizScore: (score: number) => ActionType,
-  updateUserAnsweredCorrectly: (index: number, answeredCorrectly: string) => ActionType    
+  updateUserAnsweredCorrectly: (index: number, answeredCorrectly: boolean) => ActionType    
 }
 
 const QuizScreen: React.FC<Props> = ({ 
   navigation,
   questions, 
   score,
+  totalQuestionsAnswered, // hackery! use this or ensure something else updates every time 
   updateQuizScore, 
   updateUserAnsweredCorrectly
 }) => {  
+  console.log('questions answered', totalQuestionsAnswered) // keep until hackery is fixed  
 
-  console.log('score on quiz', score) // REMOVE
-  console.log('questions on quiz', questions) // REMOVE
-
-  // WHAT HAPPENS IF NO QUESTIONS? ADDRESS THIS
-  // MOVE THIS BUSINESS LOGIC ELSEWHERE? PERHAPS NOT BECAUSE WE'RE TOYING WITH GLOBAL STATE ...
-  const evaluateAnswer = async (index: number, answer: boolean) => {
-    let answeredCorrectly = answer === questions[index].correct_answer
-    answeredCorrectly = answeredCorrectly ? 'yes' : 'no'
-    console.log('answered correctly in evaluate answer', answeredCorrectly)
-    await updateUserAnsweredCorrectly(index, answeredCorrectly) // ADDED
-    // if (answeredCorrectly === 'yes') updateQuizScore(score + 1)
-    updateQuizScore(score + 1)
-    
+  // what happens if component receives no questions? address this
+  
+  const evaluateAnswer = (index: number, answer: boolean) => {
+    let answeredCorrectly = answer === questions[index].correct_answer 
+    const newScore = answeredCorrectly ? score + 1 : score // keep until hackery is fixed, then refactor to if (answeredCorrectly) updateQuizScore(score + 1)
+    updateUserAnsweredCorrectly(index, answeredCorrectly) 
+    updateQuizScore(newScore)
   }
   
   return (
@@ -50,8 +47,8 @@ const QuizScreen: React.FC<Props> = ({
 
 const mapStateToProps = (state: ObjectType) => {
   const { isGetting, getQuestionsError, questions } = state.getQuestions
-  const { score } = state.quiz
-  return { isGetting, getQuestionsError, questions, score }
+  const { score, totalQuestionsAnswered } = state.quiz
+  return { isGetting, getQuestionsError, questions, score, totalQuestionsAnswered }
 }
 
-export default connect(mapStateToProps, { updateQuizScore, updateUserAnsweredCorrectly })(React.memo(QuizScreen)) // ADDED React.Memo
+export default connect(mapStateToProps, { updateQuizScore, updateUserAnsweredCorrectly })(QuizScreen) 

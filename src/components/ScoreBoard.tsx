@@ -12,17 +12,14 @@ interface Props {
 }
 
 const ScoreBoard: React.FC<Props> = ({ questions }) => {
-
-   
   
-  const bubbleColor = (correctAnswer: string | null): { backgroundColor: string } => {
-    console.log('bubble color correct answer', correctAnswer)
+  const bubbleColor = (correctAnswer: boolean | null): { backgroundColor: string } => {
     switch(correctAnswer) {
       case null: 
         return { backgroundColor: COLORS.textGray }
-      case 'yes': 
+      case true: 
         return { backgroundColor: COLORS.actionGreen }
-      case 'no': 
+      case false: 
         return { backgroundColor: COLORS.red }      
       default: 
         return { backgroundColor: COLORS.textGray }
@@ -30,10 +27,9 @@ const ScoreBoard: React.FC<Props> = ({ questions }) => {
   }
 
   const bubbles = questions.map((q: ObjectType) => (
-    <View style={[styles.bubble, bubbleColor(q.user_answered_correctly)]} key={Math.random().toString()}></View>
+    <View style={[styles.bubble, bubbleColor(q.user_answered_correctly)]} key={Math.random().toString()}></View> // turn Math.random().toString() into a utility method! use this on Swipe Component too
   ))
   
-  console.log('rendering bubbles ...') // REMOVE
   return (
     <View style={[STYLES.standardWidth, styles.container]}>
       {bubbles} 
@@ -42,8 +38,4 @@ const ScoreBoard: React.FC<Props> = ({ questions }) => {
 
 }
 
-export default React.memo(ScoreBoard, (prevProps: any, nextProps: any) => { // ADDED REMOVE?
-  console.log('prevProps', prevProps)
-  console.log('nextProps', nextProps)
-  return false // ALWAYS rerender when props change 
-})
+export default ScoreBoard
