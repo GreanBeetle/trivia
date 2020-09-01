@@ -2,7 +2,8 @@ import {
   GET_QUESTIONS_REQUEST,
   GET_QUESTIONS_SUCCESS,
   GET_QUESTIONS_FAILURE,
-  UPDATE_USER_ANSWERED_CORRECTLY
+  UPDATE_USER_ANSWERED_CORRECTLY,
+  RESET_QUESTIONS
 } from '../actions/types'
 import { ActionType } from '../../reusableTypes'
 
@@ -20,6 +21,8 @@ const getQuestionsReducer = ( state = initialState, action: ActionType ) => {
       return { ...state, isGetting: false, questions: action.payload }
     case GET_QUESTIONS_FAILURE: 
       return { ...state, isGetting: false, getQuestionsError: action.payload }
+    case RESET_QUESTIONS:
+      return { ...state, questions: []}
     case UPDATE_USER_ANSWERED_CORRECTLY: 
       let { questions } = state
       questions[action.payload.index].user_answered_correctly = action.payload.answeredCorrectly // fix 
