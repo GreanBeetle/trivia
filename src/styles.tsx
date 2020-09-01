@@ -132,7 +132,8 @@ export const SCOREBOARD_COMPONENT_STYLES: ObjectType = {
   bubble: {
     borderRadius: 100,
     height: 20,
-    width: 20
+    width: 20,
+    backgroundColor: COLORS.textGray
   }
 }
 
