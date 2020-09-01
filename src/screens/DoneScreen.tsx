@@ -3,9 +3,9 @@ import { SafeAreaView, FlatList, Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { GettingQuestions } from '../components'
 import { GLOBAL_STYLES as STYLES, DONE_SCREEN_STYLES as styles } from '../styles'
-import { ObjectType } from '../reusableTypes'
+import { ObjectType, ActionType } from '../reusableTypes'
 import { connect } from 'react-redux'
-import { getQuestions } from '../redux/actions'
+import { getQuestions, resetQuestions, resetQuizScore } from '../redux/actions'
 import { isEven } from '../utilities'
 import COLORS from '../colors'
 import { doneScreenCopy as COPY } from '../copy'
@@ -17,7 +17,9 @@ interface Props {
   totalQuestionsAnswered: number,
   getQuestions: () => ObjectType,
   isGetting: boolean,
-  getQuestionsError: ObjectType
+  getQuestionsError: ObjectType,
+  resetQuestions: () => ActionType,
+  resetQuizScore: () => ActionType
 }
 
 const DoneScreen: React.FC<Props> = ({ 
@@ -27,19 +29,17 @@ const DoneScreen: React.FC<Props> = ({
   totalQuestionsAnswered, // no unused vars 
   getQuestions,
   isGetting,
-  getQuestionsError 
+  getQuestionsError,
+  resetQuestions,
+  resetQuizScore 
 }) => { 
 
   const playAgain = async () => {
     try {
-      
-      console.log('play again! getting new questions') // REMOVE
-      console.log('OLD questions', questions[0]) // REMOVE
+      resetQuestions()
+      resetQuizScore()
       await getQuestions()
-      console.log('NEW questions', questions[0]) // REMOVE
       navigation.popToTop()
-      // ADD CLEAR SCORE METHOD 
-      // reset TOTALQUESTIONSANSWERED AS WELL
     } catch (error) {
       console.log('error in play again method', error)
     }
@@ -104,4 +104,4 @@ const mapStateToProps = (state: ObjectType) => {
   return { questions, score, totalQuestionsAnswered, isGetting, getQuestionsError }
 }
 
-export default connect(mapStateToProps, { getQuestions })(DoneScreen)
+export default connect(mapStateToProps, { getQuestions, resetQuestions, resetQuizScore })(DoneScreen)

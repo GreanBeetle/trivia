@@ -38,6 +38,9 @@ export const getQuestions = (): ObjectType => {
   }
 }
 
+/**
+ * this action likely isn't necessary but has been kept as a safety precaution in case getQuestions() fails
+ */
 export const resetQuestions = (): ActionType => {
   return { type: RESET_QUESTIONS } 
 }
