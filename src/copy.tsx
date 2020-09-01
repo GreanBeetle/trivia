@@ -7,11 +7,15 @@ export const quizScreenCopy = {
   title: 'Quiz'
 }
 
+export const doneScreenCopy = {
+  playAgain: 'play again'
+}
+
 export const swipeComponentCopy = {
   true: 'true',
   false: 'false'
 }
 
-export const doneScreenCopy = {
-  playAgain: 'play again'
-}
+export const gettingQuestionsComponentCopy = {
+  gettingQs: 'retrieving questions ...'
+} 

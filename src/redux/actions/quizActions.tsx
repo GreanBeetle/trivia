@@ -9,6 +9,7 @@ export const updateQuizScore = (score: number): ActionType => {
 }
 
 export const resetQuizScore = (): ActionType => {
+  console.log('ACTION reset quiz score')
   return { type: RESET_QUIZ_SCORE }
 }
 

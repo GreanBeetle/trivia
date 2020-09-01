@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
-import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
+import { SafeAreaView, Text, View } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { GettingQuestions } from '../components'
 import { connect } from 'react-redux'
 import { getQuestions } from '../redux/actions'
 import { ObjectType } from '../reusableTypes'
@@ -26,23 +28,23 @@ const HomeScreen: React.FC<Props> = ({
     getQuestions() // WILL NEED TO INVOKE THIS AGAIN USING COMPONENT DID UPDATE OR SOMETHING, AFTER PLAYER HAS FINISHED THE GAME
   }, [])
 
-  // DISABLE "BEGIN BUTTON" UNTIL APP HAS RETREIVED QUESTIONS! SHOW A "RETREIVING QUESTIONS" COMPONENT OR SOMETHING
-
-  return (
-    <SafeAreaView style={STYLES.container}>
-      <TouchableOpacity 
-        onPress={(): void => navigation.push('Quiz')} 
-        style={STYLES.standard}
-      >
-        <View>
-          <Text style={[STYLES.largeText]}>{COPY.sentence}</Text>
-        </View>
+  let content = (
+    <SafeAreaView style={STYLES.standard}>
+      <View>
+        <Text style={[STYLES.largeText]}>{COPY.sentence}</Text>
+      </View>
+      <TouchableOpacity onPress={(): void => navigation.push('Quiz')} >
         <View style={[STYLES.centered, styles.beginButton]}>
           <Text style={[STYLES.subHeaderText, STYLES.white]}>{COPY.begin}</Text>
         </View>
       </TouchableOpacity>
     </SafeAreaView>
   )
+
+  if (isGetting && !getQuestionsError) content = <GettingQuestions />
+
+  return content
+  
 }
  
 const mapStateToProps = (state: ObjectType) => {

@@ -1,9 +1,11 @@
 import React from 'react'
-import { SafeAreaView, TouchableOpacity, FlatList, Text, View } from 'react-native'
+import { SafeAreaView, FlatList, Text, View } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { GettingQuestions } from '../components'
 import { GLOBAL_STYLES as STYLES, DONE_SCREEN_STYLES as styles } from '../styles'
-import { ObjectType } from '../reusableTypes'
+import { ObjectType, ActionType } from '../reusableTypes'
 import { connect } from 'react-redux'
-import { getQuestions } from '../redux/actions'
+import { getQuestions, resetQuestions, resetQuizScore } from '../redux/actions'
 import { isEven } from '../utilities'
 import COLORS from '../colors'
 import { doneScreenCopy as COPY } from '../copy'
@@ -15,7 +17,9 @@ interface Props {
   totalQuestionsAnswered: number,
   getQuestions: () => ObjectType,
   isGetting: boolean,
-  getQuestionsError: ObjectType
+  getQuestionsError: ObjectType,
+  resetQuestions: () => ActionType,
+  resetQuizScore: () => ActionType
 }
 
 const DoneScreen: React.FC<Props> = ({ 
@@ -25,26 +29,25 @@ const DoneScreen: React.FC<Props> = ({
   totalQuestionsAnswered, // no unused vars 
   getQuestions,
   isGetting,
-  getQuestionsError 
+  getQuestionsError,
+  resetQuestions,
+  resetQuizScore 
 }) => { 
 
   const playAgain = async () => {
     try {
-      
-      console.log('play again! getting new questions') // REMOVE
-      console.log('OLD questions', questions[0]) // REMOVE
+      resetQuestions()
+      resetQuizScore()
       await getQuestions()
-      console.log('NEW questions', questions[0]) // REMOVE
       navigation.popToTop()
-      // ADD CLEAR SCORE METHOD 
-      // reset TOTALQUESTIONSANSWERED AS WELL
     } catch (error) {
       console.log('error in play again method', error)
     }
   }
 
-  // HANDLE ISGETTING QUESTIONS SCENARIO! MAKE "GETTING QUESTIONS" COMPONENT FOR THIS SCREEN AND THE HOME SCREEN
-  
+  /**
+   * header used in the FlatList below
+   */
   const header = (
     <View style={[STYLES.standard, styles.scoreContainer]}>
       <Text style={STYLES.largeHeaderText}>{((score / questions.length) * 100).toString() + '%'}</Text>
@@ -56,6 +59,10 @@ const DoneScreen: React.FC<Props> = ({
     </View>
   )
   
+  /**
+   * returns the JSX for a question list item
+   * @param item this will be a question object 
+   */
   const renderItem = (item: ObjectType) => {
     const userAnswer = item.user_answered_correctly ? item.correct_answer : !item.correct_answer
     const questionNumber = questions.indexOf(item) + 1
@@ -74,23 +81,27 @@ const DoneScreen: React.FC<Props> = ({
       </View>
     )
   }
-  
-  return (
+
+  let content = (
     <SafeAreaView>
-        <FlatList
-          data={questions}
-          renderItem={({ item }) => renderItem(item)} 
-          keyExtractor={(item: ObjectType) => item.question}
-          ListHeaderComponent={header}
-        />
+      <FlatList
+        data={questions}
+        renderItem={({ item }) => renderItem(item)}
+        keyExtractor={(item: ObjectType) => item.question}
+        ListHeaderComponent={header}
+      />
     </SafeAreaView>
   )
+  
+  if (isGetting && !getQuestionsError) content = <GettingQuestions />
+
+  return content
 }
 
 const mapStateToProps = (state: ObjectType) => {
   const { isGetting, getQuestionsError, questions } = state.getQuestions
   const { score, totalQuestionsAnswered } = state.quiz
-  return { questions, score, totalQuestionsAnswered }
+  return { questions, score, totalQuestionsAnswered, isGetting, getQuestionsError }
 }
 
-export default connect(mapStateToProps, { getQuestions })(DoneScreen)
+export default connect(mapStateToProps, { getQuestions, resetQuestions, resetQuizScore })(DoneScreen)

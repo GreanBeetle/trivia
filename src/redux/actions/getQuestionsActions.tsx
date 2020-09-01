@@ -2,7 +2,8 @@ import {
   GET_QUESTIONS_REQUEST,
   GET_QUESTIONS_SUCCESS,
   GET_QUESTIONS_FAILURE,
-  UPDATE_USER_ANSWERED_CORRECTLY // ADDED 
+  RESET_QUESTIONS,
+  UPDATE_USER_ANSWERED_CORRECTLY  
 } from './types'
 import { 
   ObjectType, 
@@ -37,18 +38,13 @@ export const getQuestions = (): ObjectType => {
   }
 }
 
-// ***************************************
-// ADDED *********************************
+/**
+ * this action likely isn't necessary but has been kept as a safety precaution in case getQuestions() fails
+ */
+export const resetQuestions = (): ActionType => {
+  return { type: RESET_QUESTIONS } 
+}
+
 export const updateUserAnsweredCorrectly = (index: number, answeredCorrectly: boolean) => {
-  // return async (dispatch: any) => {
-  //   try {
-  //     dispatch({ type: UPDATE_USER_ANSWERED_CORRECTLY, payload: { index, answeredCorrectly }}) 
-  //   } catch (error) {
-  //     console.log('error in updateUserAnsweredCorrectly')
-  //   }
-  // }
-  //console.log('ACTION update user answer', index, answeredCorrectly)
   return { type: UPDATE_USER_ANSWERED_CORRECTLY, payload: { index, answeredCorrectly } }
 }
-// ADDED *********************************
-// ***************************************
