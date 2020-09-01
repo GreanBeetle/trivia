@@ -1,5 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
+import { FontAwesome5 } from '@expo/vector-icons'
 import { 
   GLOBAL_STYLES as STYLES,
   SCOREBOARD_COMPONENT_STYLES as styles 
@@ -13,21 +14,24 @@ interface Props {
 
 const ScoreBoard: React.FC<Props> = ({ questions }) => {
   
-  const bubbleColor = (correctAnswer: boolean | null): { backgroundColor: string } => {
-    switch(correctAnswer) {
-      case null: 
-        return { backgroundColor: COLORS.textGray }
-      case true: 
-        return { backgroundColor: COLORS.actionGreen }
-      case false: 
-        return { backgroundColor: COLORS.red }      
-      default: 
-        return { backgroundColor: COLORS.textGray }
+  const nullBubble = (key: string) => <View style={styles.bubble} key={key} />
+  const thumbsUp = (key: string) => <FontAwesome5 name="thumbs-up" size={24} color={COLORS.actionGreen} key={key} /> 
+  const skull = (key: string) => <FontAwesome5 name="skull" size={24} color={COLORS.red} key={key} />
+  
+  const selectBubbleType = (userAnsweredCorrectly: boolean) => {
+    try {
+      const key = Math.random().toString()
+      if (userAnsweredCorrectly === null) return nullBubble(key)
+      else if (userAnsweredCorrectly === true) return thumbsUp(key)
+      else if (userAnsweredCorrectly === false) return skull(key)
+      else return nullBubble(key) 
+    } catch (error) {
+      console.log('error in selectBubbleType')
     }
   }
 
-  const bubbles = questions.map((q: ObjectType) => (
-    <View style={[styles.bubble, bubbleColor(q.user_answered_correctly)]} key={Math.random().toString()}></View> // turn Math.random().toString() into a utility method! use this on Swipe Component too
+  const bubbles = questions.map( (q: ObjectType) => ( 
+    selectBubbleType(q.user_answered_correctly)
   ))
   
   return (
