@@ -3,6 +3,8 @@ import { SafeAreaView, TouchableOpacity, FlatList, Text, View } from 'react-nati
 import { GLOBAL_STYLES as STYLES, DONE_SCREEN_STYLES as styles } from '../styles'
 import { ObjectType } from '../reusableTypes'
 import { connect } from 'react-redux'
+import { isEven } from '../utilities'
+import COLORS from '../colors'
 
 interface Props {
   navigation: any,
@@ -28,12 +30,15 @@ const DoneScreen: React.FC<Props> = ({ navigation, questions, score, totalQuesti
   const renderItem = (item: ObjectType) => {
     const userAnswer = item.user_answered_correctly ? item.correct_answer : !item.correct_answer
     const questionNumber = questions.indexOf(item) + 1
+    const evenNumber = isEven(questionNumber)
+    const backgroundColor = evenNumber ? COLORS.borderGray : COLORS.white 
+    console.log(`Questions #${questionNumber} is even? ${evenNumber}`)
     return (
       <View style={styles.listItemWrapper}>
-        <View style={styles.numberWrapper}>
+        <View style={styles.questionNumberWrapper}>
           <Text style={STYLES.largeText}>{questionNumber}</Text>
         </View>
-        <View style={styles.textWrapper}>
+        <View style={[styles.questionWrapper, { backgroundColor }]}>
           <Text style={STYLES.regularText}>{item.question}</Text>
           <Text style={STYLES.smallText}>correct answer: {item.correct_answer.toString()}</Text>
           <Text style={STYLES.smallText}>your answer: {userAnswer.toString()}</Text>

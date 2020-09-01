@@ -66,16 +66,17 @@ export const DONE_SCREEN_STYLES: ObjectType = {
   listItemWrapper: {
     flex: 1,
     flexDirection: 'row',
-    marginHorizontal: 20,
-    marginVertical: 8
+    marginHorizontal: 20
   },
-  numberWrapper: {
+  questionNumberWrapper: {
     flex: 1,
-    alignItems: 'left',
-    justifyContent: 'center'
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: COLORS.textGray
   },
-  textWrapper: {
-    flex: 6
+  questionWrapper: {
+    flex: 6,
+    padding: 10
   }
 }
 

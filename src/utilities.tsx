@@ -3,7 +3,7 @@ import { ObjectType } from './reusableTypes'
 const Entities = require('html-entities').AllHtmlEntities 
 
 /**
- * Returns width of device window, rounded to nearest whole number
+ * returns width of device window, rounded to nearest whole number
 */
 export const deviceWindowWidth = ():number => Math.round(Dimensions.get('window').width)
 
@@ -28,4 +28,14 @@ export const formatJSONquestions = async (questions: ObjectType[]) => {
     console.log('error in formatJSONquestions', error)
     throw error 
   }
+}
+
+/** 
+ * returns true for an even number, false for an odd number
+ */
+export const isEven = (number: number):boolean => {
+  if (number === 0) return true
+  if (number === 1) return false
+  if (number % 2 === 0) return true
+  else return false
 }
