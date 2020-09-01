@@ -1,5 +1,6 @@
 import React from 'react'
-import { SafeAreaView, TouchableOpacity, FlatList, Text, View } from 'react-native'
+import { SafeAreaView, FlatList, Text, View } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 import { GettingQuestions } from '../components'
 import { GLOBAL_STYLES as STYLES, DONE_SCREEN_STYLES as styles } from '../styles'
 import { ObjectType } from '../reusableTypes'
@@ -92,7 +93,7 @@ const DoneScreen: React.FC<Props> = ({
     </SafeAreaView>
   )
   
-  if (isGetting) content = <GettingQuestions />
+  if (isGetting && !getQuestionsError) content = <GettingQuestions />
 
   return content
 }
