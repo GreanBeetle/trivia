@@ -44,8 +44,9 @@ const DoneScreen: React.FC<Props> = ({
     }
   }
 
-  // HANDLE ISGETTING QUESTIONS SCENARIO! MAKE "GETTING QUESTIONS" COMPONENT FOR THIS SCREEN AND THE HOME SCREEN
-  
+  /**
+   * header used in the FlatList below
+   */
   const header = (
     <View style={[STYLES.standard, styles.scoreContainer]}>
       <Text style={STYLES.largeHeaderText}>{((score / questions.length) * 100).toString() + '%'}</Text>
@@ -57,6 +58,10 @@ const DoneScreen: React.FC<Props> = ({
     </View>
   )
   
+  /**
+   * returns the JSX for a question list item
+   * @param item this will be a question object 
+   */
   const renderItem = (item: ObjectType) => {
     const userAnswer = item.user_answered_correctly ? item.correct_answer : !item.correct_answer
     const questionNumber = questions.indexOf(item) + 1
