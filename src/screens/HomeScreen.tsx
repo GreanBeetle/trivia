@@ -28,6 +28,11 @@ const HomeScreen: React.FC<Props> = ({
 
   // DISABLE "BEGIN BUTTON" UNTIL APP HAS RETREIVED QUESTIONS! SHOW A "RETREIVING QUESTIONS" COMPONENT OR SOMETHING
 
+  // **********************************************************
+  // ** HERE! *** IMPORT and USE <GettingQuestions /> HERE ****
+  // **********************************************************
+
+
   return (
     <SafeAreaView style={STYLES.container}>
       <TouchableOpacity 
