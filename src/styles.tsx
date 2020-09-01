@@ -62,6 +62,23 @@ export const HOME_SCREEN_STYLES: ObjectType = {
   }
 }
 
+export const DONE_SCREEN_STYLES: ObjectType = {
+  listItemWrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    marginHorizontal: 20,
+    marginVertical: 8
+  },
+  numberWrapper: {
+    flex: 1,
+    alignItems: 'left',
+    justifyContent: 'center'
+  },
+  textWrapper: {
+    flex: 6
+  }
+}
+
 export const SWIPE_COMPONENT_STYLES: ObjectType = {
   swipeContainer: {
     flex: 2

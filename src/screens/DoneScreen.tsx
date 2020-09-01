@@ -1,6 +1,6 @@
 import React from 'react'
-import { SafeAreaView, TouchableOpacity, FlatList, Text } from 'react-native'
-import { GLOBAL_STYLES as STYLES } from '../styles'
+import { SafeAreaView, TouchableOpacity, FlatList, Text, View } from 'react-native'
+import { GLOBAL_STYLES as STYLES, DONE_SCREEN_STYLES as styles } from '../styles'
 import { ObjectType } from '../reusableTypes'
 import { connect } from 'react-redux'
 
@@ -14,7 +14,12 @@ interface Props {
 const DoneScreen: React.FC<Props> = ({ navigation, questions, score, totalQuestionsAnswered }) => {
 
 
-  const header = <><Text style={STYLES.headerText}>{((score / questions.length) * 100).toString() + '%'}</Text></>
+  const header = (
+    <View style={STYLES.standard}>
+      <Text style={STYLES.headerText}>{((score / questions.length) * 100).toString() + '% correct'}</Text>
+    </View>
+  )
+
   const footer = ( // add actual text! 
     <TouchableOpacity onPress={() => navigation.popToTop()}>
       <Text>PLAY AGAIN</Text> 
@@ -22,26 +27,35 @@ const DoneScreen: React.FC<Props> = ({ navigation, questions, score, totalQuesti
   )
   
   const renderItem = (item: ObjectType) => {
-    console.log('item.correct_answer', item.correct_answer)
+    console.log('item.correct_answer', item.correct_answer) // REMOVE
+    console.log('item', item) // REMOVE
+    console.log('index of', questions.indexOf(item))
     const userAnswer = item.user_answered_correctly ? item.correct_answer : !item.correct_answer
+    const questionNumber = questions.indexOf(item) + 1
     return (
-      <>
-        <Text>{item.question}</Text>
-        <Text>correct answer: {item.correct_answer.toString()}</Text>
-        <Text>your answer: {userAnswer.toString()}</Text>
-      </>
+      
+      <View style={styles.listItemWrapper}>
+        <View style={styles.numberWrapper}>
+          <Text style={STYLES.largeText}>{questionNumber}</Text>
+        </View>
+        <View style={styles.textWrapper}>
+          <Text style={STYLES.regularText}>{item.question}</Text>
+          <Text style={STYLES.smallText}>correct answer: {item.correct_answer.toString()}</Text>
+          <Text style={STYLES.smallText}>your answer: {userAnswer.toString()}</Text>
+
+        </View>
+      </View>
     )
   }
   
   return (
-    <SafeAreaView style={STYLES.standard}>
+    <SafeAreaView>
         <FlatList
           data={questions}
           renderItem={({ item }) => renderItem(item)} 
           keyExtractor={(item: ObjectType) => item.question}
           ListHeaderComponent={header}
           ListFooterComponent={footer}
-
         />
     </SafeAreaView>
   )
