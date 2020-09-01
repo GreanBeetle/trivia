@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { SafeAreaView } from 'react-native'
 import { GLOBAL_STYLES as STYLES } from '../styles'
 import { Swipe, ScoreBoard, Timer } from '../components'
@@ -10,7 +10,7 @@ interface Props {
   navigation: any,
   isGetting: boolean,
   getQuestionsError: ObjectType,
-  questions: ObjectType,
+  questions: ObjectType, // should this be ObjectType[]? yes it should 
   score: number,
   totalQuestionsAnswered: number,
   updateQuizScore: (score: number) => ActionType,
@@ -29,6 +29,7 @@ const QuizScreen: React.FC<Props> = ({
 
   // what happens if component receives no questions? address this
   
+  // try catch?
   const evaluateAnswer = (index: number, answer: boolean) => {
     let answeredCorrectly = answer === questions[index].correct_answer 
     const newScore = answeredCorrectly ? score + 1 : score // keep until hackery is fixed, then refactor to if (answeredCorrectly) updateQuizScore(score + 1)
@@ -39,7 +40,7 @@ const QuizScreen: React.FC<Props> = ({
   return (
     <SafeAreaView style={STYLES.container}>
       <ScoreBoard questions={questions} />
-      <Swipe questions={questions} onSwipe={evaluateAnswer} />
+      <Swipe questions={questions} onSwipe={evaluateAnswer} navToDoneScreen={() => navigation.push('Done')} />
       <Timer />
     </SafeAreaView>
   )

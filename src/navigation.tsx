@@ -9,7 +9,7 @@ const InitialStackScreens = () => (
   <Stack.Navigator>
     <Stack.Screen name='Home' component={HomeScreen} options={{headerShown: false}} />
     <Stack.Screen name='Quiz' component={QuizScreen} options={{headerShown: false, gestureEnabled: false }} />
-    <Stack.Screen name='Quiz' component={DoneScreen} options={{ headerShown: false, gestureEnabled: false }} />
+    <Stack.Screen name='Done' component={DoneScreen} options={{ headerShown: false, gestureEnabled: false }} />
   </Stack.Navigator>
 )
 

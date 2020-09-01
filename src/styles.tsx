@@ -41,6 +41,10 @@ export const GLOBAL_STYLES: ObjectType = {
     fontFamily: 'LexendGiga_400Regular',
     fontSize: 36
   },
+  largeHeaderText: {
+    fontFamily: 'LexendGiga_400Regular',
+    fontSize: 48
+  },
   white: {
     color: COLORS.white
   },
@@ -59,6 +63,34 @@ export const HOME_SCREEN_STYLES: ObjectType = {
     borderRadius: 100,
     backgroundColor: COLORS.actionGreen,
     marginTop: 36
+  }
+}
+
+export const DONE_SCREEN_STYLES: ObjectType = {
+  listItemWrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    marginHorizontal: 20
+  },
+  questionNumberWrapper: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: COLORS.textGray
+  },
+  questionWrapper: {
+    flex: 6,
+    padding: 10
+  },
+  scoreContainer: {
+    marginVertical: 30
+  },
+  playAgainButton: {
+    height: 60,
+    borderRadius: 30, 
+    backgroundColor: COLORS.actionGreen,
+    width: deviceWindowWidth() - 40,
+    marginTop: 20
   }
 }
 
