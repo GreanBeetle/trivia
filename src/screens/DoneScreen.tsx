@@ -1,5 +1,6 @@
 import React from 'react'
 import { SafeAreaView, TouchableOpacity, FlatList, Text, View } from 'react-native'
+import { GettingQuestions } from '../components'
 import { GLOBAL_STYLES as STYLES, DONE_SCREEN_STYLES as styles } from '../styles'
 import { ObjectType } from '../reusableTypes'
 import { connect } from 'react-redux'
@@ -74,23 +75,27 @@ const DoneScreen: React.FC<Props> = ({
       </View>
     )
   }
-  
-  return (
+
+  let content = (
     <SafeAreaView>
-        <FlatList
-          data={questions}
-          renderItem={({ item }) => renderItem(item)} 
-          keyExtractor={(item: ObjectType) => item.question}
-          ListHeaderComponent={header}
-        />
+      <FlatList
+        data={questions}
+        renderItem={({ item }) => renderItem(item)}
+        keyExtractor={(item: ObjectType) => item.question}
+        ListHeaderComponent={header}
+      />
     </SafeAreaView>
   )
+  
+  if (isGetting) content = <GettingQuestions />
+
+  return content
 }
 
 const mapStateToProps = (state: ObjectType) => {
   const { isGetting, getQuestionsError, questions } = state.getQuestions
   const { score, totalQuestionsAnswered } = state.quiz
-  return { questions, score, totalQuestionsAnswered }
+  return { questions, score, totalQuestionsAnswered, isGetting, getQuestionsError }
 }
 
 export default connect(mapStateToProps, { getQuestions })(DoneScreen)
