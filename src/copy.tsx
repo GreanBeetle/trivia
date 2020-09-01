@@ -11,3 +11,7 @@ export const swipeComponentCopy = {
   true: 'true',
   false: 'false'
 }
+
+export const doneScreenCopy = {
+  playAgain: 'play again'
+}

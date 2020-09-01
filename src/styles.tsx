@@ -41,6 +41,10 @@ export const GLOBAL_STYLES: ObjectType = {
     fontFamily: 'LexendGiga_400Regular',
     fontSize: 36
   },
+  largeHeaderText: {
+    fontFamily: 'LexendGiga_400Regular',
+    fontSize: 48
+  },
   white: {
     color: COLORS.white
   },
@@ -77,6 +81,16 @@ export const DONE_SCREEN_STYLES: ObjectType = {
   questionWrapper: {
     flex: 6,
     padding: 10
+  },
+  scoreContainer: {
+    marginVertical: 30
+  },
+  playAgainButton: {
+    height: 60,
+    borderRadius: 30, 
+    backgroundColor: COLORS.actionGreen,
+    width: deviceWindowWidth() - 40,
+    marginTop: 20
   }
 }
 

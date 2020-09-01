@@ -3,28 +3,57 @@ import { SafeAreaView, TouchableOpacity, FlatList, Text, View } from 'react-nati
 import { GLOBAL_STYLES as STYLES, DONE_SCREEN_STYLES as styles } from '../styles'
 import { ObjectType } from '../reusableTypes'
 import { connect } from 'react-redux'
+import { getQuestions } from '../redux/actions'
 import { isEven } from '../utilities'
 import COLORS from '../colors'
+import { doneScreenCopy as COPY } from '../copy'
 
 interface Props {
   navigation: any,
   questions: ObjectType[],
   score: number,
-  totalQuestionsAnswered: number
+  totalQuestionsAnswered: number,
+  getQuestions: () => ObjectType,
+  isGetting: boolean,
+  getQuestionsError: ObjectType
 }
 
-const DoneScreen: React.FC<Props> = ({ navigation, questions, score, totalQuestionsAnswered }) => {
+const DoneScreen: React.FC<Props> = ({ 
+  navigation, 
+  questions, 
+  score, 
+  totalQuestionsAnswered, // no unused vars 
+  getQuestions,
+  isGetting,
+  getQuestionsError 
+}) => { 
 
+  const playAgain = async () => {
+    try {
+      
+      console.log('play again! getting new questions') // REMOVE
+      console.log('OLD questions', questions[0]) // REMOVE
+      await getQuestions()
+      console.log('NEW questions', questions[0]) // REMOVE
+      navigation.popToTop()
+      // ADD CLEAR SCORE METHOD 
+      // reset TOTALQUESTIONSANSWERED AS WELL
+    } catch (error) {
+      console.log('error in play again method', error)
+    }
+  }
+
+  // HANDLE ISGETTING QUESTIONS SCENARIO! MAKE "GETTING QUESTIONS" COMPONENT FOR THIS SCREEN AND THE HOME SCREEN
+  
   const header = (
-    <View style={STYLES.standard}>
-      <Text style={STYLES.headerText}>{((score / questions.length) * 100).toString() + '% correct'}</Text>
+    <View style={[STYLES.standard, styles.scoreContainer]}>
+      <Text style={STYLES.largeHeaderText}>{((score / questions.length) * 100).toString() + '%'}</Text>
+      <TouchableOpacity onPress={() => playAgain()}>
+        <View style={[STYLES.centered, styles.playAgainButton]}>
+          <Text style={[STYLES.subHeaderText, STYLES.white]}>{COPY.playAgain}</Text>
+        </View>
+      </TouchableOpacity>
     </View>
-  )
-
-  const footer = ( // add actual text! 
-    <TouchableOpacity onPress={() => navigation.popToTop()}>
-      <Text>PLAY AGAIN</Text> 
-    </TouchableOpacity>
   )
   
   const renderItem = (item: ObjectType) => {
@@ -32,7 +61,6 @@ const DoneScreen: React.FC<Props> = ({ navigation, questions, score, totalQuesti
     const questionNumber = questions.indexOf(item) + 1
     const evenNumber = isEven(questionNumber)
     const backgroundColor = evenNumber ? COLORS.borderGray : COLORS.white 
-    console.log(`Questions #${questionNumber} is even? ${evenNumber}`)
     return (
       <View style={styles.listItemWrapper}>
         <View style={styles.questionNumberWrapper}>
@@ -54,16 +82,15 @@ const DoneScreen: React.FC<Props> = ({ navigation, questions, score, totalQuesti
           renderItem={({ item }) => renderItem(item)} 
           keyExtractor={(item: ObjectType) => item.question}
           ListHeaderComponent={header}
-          ListFooterComponent={footer}
         />
     </SafeAreaView>
   )
 }
 
 const mapStateToProps = (state: ObjectType) => {
-  const { questions } = state.getQuestions
+  const { isGetting, getQuestionsError, questions } = state.getQuestions
   const { score, totalQuestionsAnswered } = state.quiz
   return { questions, score, totalQuestionsAnswered }
 }
 
-export default connect(mapStateToProps)(DoneScreen)
+export default connect(mapStateToProps, { getQuestions })(DoneScreen)
