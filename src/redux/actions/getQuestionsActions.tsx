@@ -2,7 +2,8 @@ import {
   GET_QUESTIONS_REQUEST,
   GET_QUESTIONS_SUCCESS,
   GET_QUESTIONS_FAILURE,
-  UPDATE_USER_ANSWERED_CORRECTLY // ADDED 
+  RESET_QUESTIONS,
+  UPDATE_USER_ANSWERED_CORRECTLY  
 } from './types'
 import { 
   ObjectType, 
@@ -35,6 +36,10 @@ export const getQuestions = (): ObjectType => {
       dispatch(getQuestionsFailure(error))
     }
   }
+}
+
+export const resetQuestions = (): ActionType => {
+  return { type: RESET_QUESTIONS } 
 }
 
 export const updateUserAnsweredCorrectly = (index: number, answeredCorrectly: boolean) => {

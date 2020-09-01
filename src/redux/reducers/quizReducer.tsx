@@ -11,7 +11,7 @@ const quizReducer = (state = initialState, action: ActionType) => {
     case UPDATE_QUIZ_SCORE:
       return { ...state, score: action.payload, totalQuestionsAnswered: state.totalQuestionsAnswered + 1 }
     case RESET_QUIZ_SCORE: 
-      return { ...state, score: 0 }
+      return { ...state, score: 0, totalQuestionsAnswered: 0 }
     default: 
       return state 
   }

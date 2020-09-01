@@ -1,5 +1,3 @@
-import { ObjectType } from './reusableTypes'
-
 const COLORS = {
   actionGreen: '#00E174',
   lightActionGreen: '#2DE48C',
