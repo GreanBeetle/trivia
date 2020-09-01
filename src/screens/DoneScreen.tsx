@@ -13,7 +13,6 @@ interface Props {
 
 const DoneScreen: React.FC<Props> = ({ navigation, questions, score, totalQuestionsAnswered }) => {
 
-
   const header = (
     <View style={STYLES.standard}>
       <Text style={STYLES.headerText}>{((score / questions.length) * 100).toString() + '% correct'}</Text>
@@ -27,13 +26,9 @@ const DoneScreen: React.FC<Props> = ({ navigation, questions, score, totalQuesti
   )
   
   const renderItem = (item: ObjectType) => {
-    console.log('item.correct_answer', item.correct_answer) // REMOVE
-    console.log('item', item) // REMOVE
-    console.log('index of', questions.indexOf(item))
     const userAnswer = item.user_answered_correctly ? item.correct_answer : !item.correct_answer
     const questionNumber = questions.indexOf(item) + 1
     return (
-      
       <View style={styles.listItemWrapper}>
         <View style={styles.numberWrapper}>
           <Text style={STYLES.largeText}>{questionNumber}</Text>
@@ -42,7 +37,6 @@ const DoneScreen: React.FC<Props> = ({ navigation, questions, score, totalQuesti
           <Text style={STYLES.regularText}>{item.question}</Text>
           <Text style={STYLES.smallText}>correct answer: {item.correct_answer.toString()}</Text>
           <Text style={STYLES.smallText}>your answer: {userAnswer.toString()}</Text>
-
         </View>
       </View>
     )
