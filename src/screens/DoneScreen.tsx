@@ -54,7 +54,7 @@ const DoneScreen: React.FC<Props> = ({
     <View style={[STYLES.standard, styles.scoreContainer]}>
       <Text style={STYLES.subHeaderText}>{`score ${score}/${questions.length}`}</Text>
       <TouchableOpacity onPress={() => playAgain()}>
-        <View style={[STYLES.centered, styles.playAgainButton]}>
+        <View style={[STYLES.centered, STYLES.largeButton, styles.playAgainButton]}>
           <Text style={[STYLES.subHeaderText, STYLES.white]}>{COPY.playAgain}</Text>
         </View>
       </TouchableOpacity>

@@ -1,9 +1,15 @@
 import React, { useEffect, useRef } from 'react'
 import { SafeAreaView } from 'react-native'
 import { GLOBAL_STYLES as STYLES } from '../styles'
-import { Swipe, ScoreBoard, Timer, QuizHeadline } from '../components'
 import { connect } from 'react-redux'
 import { ObjectType, ActionType } from '../reusableTypes'
+import { 
+  Swipe, 
+  ScoreBoard, 
+  Timer, 
+  QuizHeadline,
+  TimedOut 
+} from '../components'
 import { 
   updateQuizScore, 
   updateUserAnsweredCorrectly,
@@ -68,7 +74,7 @@ const QuizScreen: React.FC<Props> = ({
     navigation.push('Done')
   }
   
-  return (
+  let content = (
     <SafeAreaView style={STYLES.container}>
       <ScoreBoard questions={questions} />
       <QuizHeadline headline={questions[currentQuestion] ? questions[currentQuestion].category : ''} />
@@ -76,6 +82,11 @@ const QuizScreen: React.FC<Props> = ({
       <Timer currentTime={currentTime} />
     </SafeAreaView>
   )
+  
+  if (currentTime === 0) setTimedOut(true)
+  if (timedOut) content = <TimedOut />
+
+  return content
 }
 
 const mapStateToProps = (state: ObjectType) => {

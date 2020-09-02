@@ -8,7 +8,7 @@ interface Props {
 
 const QuizHeadline: React.FC<Props> = ({ headline }) => (
   <View style={STYLES.standard}>
-    <Text style={[STYLES.largeText, STYLES.darkGreen]}>{headline}</Text>
+    <Text style={[STYLES.largeText, STYLES.textGray]}>{headline}</Text>
   </View>
 )
 

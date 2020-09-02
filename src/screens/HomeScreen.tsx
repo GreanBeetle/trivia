@@ -5,7 +5,7 @@ import { GettingQuestions } from '../components'
 import { connect } from 'react-redux'
 import { getQuestions } from '../redux/actions'
 import { ObjectType } from '../reusableTypes'
-import { GLOBAL_STYLES as STYLES, HOME_SCREEN_STYLES as styles } from '../styles'
+import { GLOBAL_STYLES as STYLES } from '../styles'
 import { homeScreenCopy as COPY } from '../copy'
 
 interface Props {
@@ -34,7 +34,7 @@ const HomeScreen: React.FC<Props> = ({
         <Text style={[STYLES.largeText]}>{COPY.sentence}</Text>
       </View>
       <TouchableOpacity onPress={(): void => navigation.push('Quiz')} >
-        <View style={[STYLES.centered, styles.beginButton]}>
+        <View style={[STYLES.centered, STYLES.roundButton, STYLES.greenBackground]}>
           <Text style={[STYLES.subHeaderText, STYLES.white]}>{COPY.begin}</Text>
         </View>
       </TouchableOpacity>

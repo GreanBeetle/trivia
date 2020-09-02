@@ -1,13 +1,15 @@
 import Swipe from './Swipe'
 import ScoreBoard from './ScoreBoard'
 import Timer from './Timer'
+import TimedOut from './TimedOut'
 import GettingQuestions from './GettingQuestions'
 import QuizHeadline from './QuizHeadline'
 
 export {
   Swipe,
   ScoreBoard, 
-  Timer, 
+  Timer,
+  TimedOut, 
   GettingQuestions,
   QuizHeadline
 }
