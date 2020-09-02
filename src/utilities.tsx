@@ -1,7 +1,7 @@
 import { Dimensions } from 'react-native'
 import { ObjectType } from './reusableTypes'
 const Entities = require('html-entities').AllHtmlEntities
-import { store } from '../App' 
+import { store } from '../App'
 import * as actions from './redux/actions'
 import { navRef } from './navigation'
 
@@ -50,17 +50,14 @@ export const isEven = (number: number):boolean => {
 export const navToScreen = (screen: string) => navRef.current?.navigate(screen) 
 
 // JS DOCS 
-export const retry = async () => {
+export const retry = async (shouldNavHome: boolean) => {
   try {
-    console.log('inside massive retry method')
-    console.log('and the store is', store.getState())
-    console.log('and actions', actions)
-    // resetQuestions
-    // resetQuizScore
-    // resetTimer
-    // setTimedOut(false)
-    // remove getQuestionsError
-    // await getQuestions
+    store.dispatch(actions.resetQuestions())
+    store.dispatch(actions.resetQuizScore())
+    store.dispatch(actions.resetTimer())
+    store.dispatch(actions.setTimedOut(false))
+    store.dispatch(actions.getQuestions())
+    if (shouldNavHome) navToScreen('Home')
   } catch (error) {
     console.log('error in utility method retry', error)
   }

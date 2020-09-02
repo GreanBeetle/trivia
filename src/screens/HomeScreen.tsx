@@ -44,7 +44,7 @@ const HomeScreen: React.FC<Props> = ({
   )
 
   if (isGetting && !getQuestionsError) content = <GettingQuestions />
-  if (!isGetting && getQuestionsError) content = <ErrorComponent errorMessage={getQuestionsError.message} />
+  if (!isGetting && getQuestionsError) content = <ErrorComponent errorMessage={getQuestionsError.message} shouldNavHome={false} />
 
   return content
   
