@@ -4,6 +4,7 @@ import Timer from './Timer'
 import TimedOut from './TimedOut'
 import GettingQuestions from './GettingQuestions'
 import QuizHeadline from './QuizHeadline'
+import ErrorComponent from './ErrorComponent'
 
 export {
   Swipe,
@@ -11,5 +12,6 @@ export {
   Timer,
   TimedOut, 
   GettingQuestions,
-  QuizHeadline
+  QuizHeadline,
+  ErrorComponent
 }
