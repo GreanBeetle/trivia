@@ -40,7 +40,7 @@ const QuizScreen: React.FC<Props> = ({
   return (
     <SafeAreaView style={STYLES.container}>
       <ScoreBoard questions={questions} />
-      <QuizHeadline headline={questions[currentQuestion].category} />
+      <QuizHeadline headline={questions[currentQuestion] ? questions[currentQuestion].category : ''} />
       <Swipe questions={questions} onSwipe={evaluateAnswer} navToDoneScreen={() => navigation.push('Done')} />
       <Timer />
     </SafeAreaView>

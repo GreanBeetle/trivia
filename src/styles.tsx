@@ -55,7 +55,7 @@ export const GLOBAL_STYLES: ObjectType = {
     color: COLORS.actionGreen
   },
   darkGreen: {
-    color: COLORS.darkGreen
+    color: COLORS.textGray
   }
 }
 
@@ -99,7 +99,7 @@ export const DONE_SCREEN_STYLES: ObjectType = {
 
 export const SWIPE_COMPONENT_STYLES: ObjectType = {
   swipeContainer: {
-    flex: 2
+    flex: 4
   },
   content: {
     flex: 5,
@@ -108,7 +108,7 @@ export const SWIPE_COMPONENT_STYLES: ObjectType = {
   },
   card: {
     width: deviceWindowWidth() - 40,
-    height: 425,
+    height: 350,
     backgroundColor: COLORS.white,
     borderRadius: 5,
     shadowColor: 'rgba(0,0,0,0.5)',
