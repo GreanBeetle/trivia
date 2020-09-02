@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { SafeAreaView, Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import { GettingQuestions } from '../components'
+import { GettingQuestions, ErrorComponent } from '../components'
 import { connect } from 'react-redux'
 import { getQuestions } from '../redux/actions'
 import { ObjectType } from '../reusableTypes'
@@ -18,9 +18,9 @@ interface Props {
 
 const HomeScreen: React.FC<Props> = ({ 
   navigation, 
-  isGetting, // NO USED VARS, ADD ERROR HANDLING COMPONENT I.E. ERROR.TSX
-  getQuestionsError, // NO UNUSED VARS, ADD ERROR HANDLING COMPONENT I.E. ERROR.TSX
-  questions, // NO UNUSED VARS, ADD ERROR HANDLING COMPONENT I.E. ERROR.TSX
+  isGetting, 
+  getQuestionsError, 
+  questions, // NO UNUSED VARS use this to enable/disable the begin button
   getQuestions 
 }) => {
  
@@ -44,6 +44,7 @@ const HomeScreen: React.FC<Props> = ({
   )
 
   if (isGetting && !getQuestionsError) content = <GettingQuestions />
+  if (!isGetting && getQuestionsError) content = <ErrorComponent errorMessage={getQuestionsError.message} />
 
   return content
   

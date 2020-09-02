@@ -24,3 +24,9 @@ export const timedOutComponentCopy = {
   timeout: 'time out!',
   retry: 'retry'
 }
+
+export const errorComponentCopy = {
+  error: 'error:',
+  pleaseEnsureInternet: 'please ensure that you have access to the internet',
+  retry: 'retry'
+}

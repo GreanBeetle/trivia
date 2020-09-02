@@ -62,6 +62,9 @@ export const GLOBAL_STYLES: ObjectType = {
   },
   textGray: {
     color: COLORS.textGray
+  },
+  textGrayBackground: {
+    backgroundColor: COLORS.textGray
   }, 
   largeButton: {
     height: 60,

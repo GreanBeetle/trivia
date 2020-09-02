@@ -29,6 +29,7 @@ export const getQuestions = (): ObjectType => {
       const response = await fetch('https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean')
       const json = await response.json()
       const results = await formatJSONquestions(json.results)
+      throw Error('bumble fuck!') // REMOVE!!!! 
       console.log('dispatching get questions success with results', results)
       dispatch(getQuestionsSuccess(results))
     } catch (error) {
