@@ -1,5 +1,6 @@
 import React from 'react'
 import { SafeAreaView, FlatList, Text, View } from 'react-native'
+import { StackActions } from '@react-navigation/native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { GettingQuestions } from '../components'
 import { GLOBAL_STYLES as STYLES, DONE_SCREEN_STYLES as styles } from '../styles'
@@ -34,12 +35,15 @@ const DoneScreen: React.FC<Props> = ({
   resetQuizScore 
 }) => { 
 
+  // JS Docs! 
+  // try catch!
+  // duplicate of RETRY() method in QuizScreen 
   const playAgain = async () => {
     try {
       resetQuestions()
       resetQuizScore()
       await getQuestions()
-      navigation.popToTop()
+      navigation.dispatch(StackActions.pop(2))
     } catch (error) {
       console.log('error in play again method', error)
     }
@@ -52,7 +56,7 @@ const DoneScreen: React.FC<Props> = ({
     <View style={[STYLES.standard, styles.scoreContainer]}>
       <Text style={STYLES.subHeaderText}>{`score ${score}/${questions.length}`}</Text>
       <TouchableOpacity onPress={() => playAgain()}>
-        <View style={[STYLES.centered, styles.playAgainButton]}>
+        <View style={[STYLES.centered, STYLES.largeButton, styles.playAgainButton]}>
           <Text style={[STYLES.subHeaderText, STYLES.white]}>{COPY.playAgain}</Text>
         </View>
       </TouchableOpacity>

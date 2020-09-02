@@ -51,20 +51,28 @@ export const GLOBAL_STYLES: ObjectType = {
   red: {
     color: COLORS.red
   },
+  redBackground: {
+    backgroundColor: COLORS.red
+  },
   green: {
     color: COLORS.actionGreen
   },
-  darkGreen: {
+  greenBackground: {
+    backgroundColor: COLORS.actionGreen
+  },
+  textGray: {
     color: COLORS.textGray
-  }
-}
-
-export const HOME_SCREEN_STYLES: ObjectType = {
-  beginButton: {
+  }, 
+  largeButton: {
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: COLORS.actionGreen,
+    width: deviceWindowWidth() - 40
+  }, 
+  roundButton: {
     width: 144,
     height: 144,
     borderRadius: 100,
-    backgroundColor: COLORS.actionGreen,
     marginTop: 36
   }
 }
@@ -89,10 +97,6 @@ export const DONE_SCREEN_STYLES: ObjectType = {
     marginVertical: 30
   },
   playAgainButton: {
-    height: 60,
-    borderRadius: 30, 
-    backgroundColor: COLORS.actionGreen,
-    width: deviceWindowWidth() - 40,
     marginTop: 20
   }
 }

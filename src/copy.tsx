@@ -19,3 +19,8 @@ export const swipeComponentCopy = {
 export const gettingQuestionsComponentCopy = {
   gettingQs: 'retrieving questions ...'
 } 
+
+export const timedOutComponentCopy = {
+  timeout: 'time out!',
+  retry: 'retry'
+}

@@ -1,56 +1,138 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { SafeAreaView } from 'react-native'
+import { StackActions } from '@react-navigation/native'
 import { GLOBAL_STYLES as STYLES } from '../styles'
-import { Swipe, ScoreBoard, Timer, QuizHeadline } from '../components'
 import { connect } from 'react-redux'
 import { ObjectType, ActionType } from '../reusableTypes'
-import { updateQuizScore, updateUserAnsweredCorrectly } from '../redux/actions'
+import { 
+  Swipe, 
+  ScoreBoard, 
+  Timer, 
+  QuizHeadline,
+  TimedOut,
+  GettingQuestions 
+} from '../components'
+import { 
+  getQuestions,
+  updateQuizScore,
+  resetQuizScore, 
+  updateUserAnsweredCorrectly,
+  resetTimer,
+  updateTimeRemaining,
+  setTimedOut 
+} from '../redux/actions'
 
 interface Props {
   navigation: any,
+  getQuestions: () => ObjectType,
   isGetting: boolean,
   getQuestionsError: ObjectType,
-  questions: ObjectType, // should this be ObjectType[]? yes it should 
+  questions: ObjectType, 
   score: number,
   currentQuestion: number,
   updateQuizScore: (score: number) => ActionType,
-  updateUserAnsweredCorrectly: (index: number, answeredCorrectly: boolean) => ActionType    
+  resetQuizScore: () => ActionType,
+  updateUserAnsweredCorrectly: (index: number, answeredCorrectly: boolean) => ActionType,
+  resetTimer: () => ActionType,
+  updateTimeRemaining: () => ActionType,
+  setTimedOut: (timedOut: boolean) => ActionType,
+  currentTime: number,
+  timedOut: boolean     
 }
 
 const QuizScreen: React.FC<Props> = ({ 
   navigation,
+  getQuestions,
+  isGetting,
+  getQuestionsError,
   questions, 
   score,
-  currentQuestion, // hackery! use this or ensure something else updates every time 
-  updateQuizScore, 
-  updateUserAnsweredCorrectly
+  currentQuestion,  
+  updateQuizScore,
+  resetQuizScore, 
+  updateUserAnsweredCorrectly,
+  resetTimer,
+  updateTimeRemaining,
+  setTimedOut,
+  currentTime,
+  timedOut
 }) => {  
-  console.log('questions answered', currentQuestion) // keep until hackery is fixed  
-
+    
   // what happens if component receives no questions? address this
   
-  // try catch?
+  let timer: any = useRef(null)
+
+  useEffect( () => { 
+    timer.current = setInterval( () => {
+      updateTimeRemaining()
+    }, 1000)
+    return () => clearInterval(timer.current)
+  }, [])
+
+  // add JS docs explaining this function and perhaps a try catch?
+  // try catch!   
   const evaluateAnswer = (index: number, answer: boolean) => {
     let answeredCorrectly = answer === questions[index].correct_answer 
-    const newScore = answeredCorrectly ? score + 1 : score // keep until hackery is fixed, then refactor to if (answeredCorrectly) updateQuizScore(score + 1)
+    const newScore = answeredCorrectly ? score + 1 : score
     updateUserAnsweredCorrectly(index, answeredCorrectly) 
     updateQuizScore(newScore)
+    resetTimer()
+  }
+
+  // JS Docs?
+  // try catch!
+  const navToDoneScreen = (): void => {
+    clearInterval(timer.current)
+    navigation.push('Done')
+  }
+
+  // JS Docs
+  // duplicate of playAgain() method in DoneScreen
+  const retry = async () => {
+    try {
+      clearInterval(timer.current)
+      resetTimer()
+      setTimedOut(false)
+      resetQuizScore()
+      await getQuestions()
+      navigation.dispatch(StackActions.pop(1))
+    } catch (error) {
+      console.log('retry error', error) // keep?
+      // add setError here
+    }
   }
   
-  return (
+  let content = (
     <SafeAreaView style={STYLES.container}>
       <ScoreBoard questions={questions} />
       <QuizHeadline headline={questions[currentQuestion] ? questions[currentQuestion].category : ''} />
-      <Swipe questions={questions} onSwipe={evaluateAnswer} navToDoneScreen={() => navigation.push('Done')} />
-      <Timer />
+      <Swipe questions={questions} onSwipe={evaluateAnswer} navToDoneScreen={() => navToDoneScreen()} />
+      <Timer currentTime={currentTime} />
     </SafeAreaView>
   )
+  
+  if (currentTime === 0) setTimedOut(true)
+  if (timedOut) content = <TimedOut retry={() => retry()} />
+  if (isGetting && !getQuestionsError) content = <GettingQuestions />
+
+  return content
 }
 
 const mapStateToProps = (state: ObjectType) => {
   const { isGetting, getQuestionsError, questions } = state.getQuestions
   const { score, currentQuestion } = state.quiz
-  return { isGetting, getQuestionsError, questions, score, currentQuestion }
+  const { currentTime, timedOut } = state.timer
+  return { isGetting, getQuestionsError, questions, score, currentQuestion, currentTime, timedOut }
 }
 
-export default connect(mapStateToProps, { updateQuizScore, updateUserAnsweredCorrectly })(QuizScreen) 
+const actions = {
+  getQuestions,
+  updateQuizScore,
+  resetQuizScore,
+  updateUserAnsweredCorrectly,
+  resetTimer,
+  updateTimeRemaining,
+  setTimedOut
+}
+
+export default connect(mapStateToProps, actions)(QuizScreen) 

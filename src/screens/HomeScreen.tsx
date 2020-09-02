@@ -5,7 +5,7 @@ import { GettingQuestions } from '../components'
 import { connect } from 'react-redux'
 import { getQuestions } from '../redux/actions'
 import { ObjectType } from '../reusableTypes'
-import { GLOBAL_STYLES as STYLES, HOME_SCREEN_STYLES as styles } from '../styles'
+import { GLOBAL_STYLES as STYLES } from '../styles'
 import { homeScreenCopy as COPY } from '../copy'
 
 interface Props {
@@ -24,6 +24,8 @@ const HomeScreen: React.FC<Props> = ({
   getQuestions 
 }) => {
  
+  // UPDATE STATE ONLY WHEN questions, isGetting, or getQuestionsError changes! Otherwise do not rerender
+
   useEffect(() => {
     getQuestions() // WILL NEED TO INVOKE THIS AGAIN USING COMPONENT DID UPDATE OR SOMETHING, AFTER PLAYER HAS FINISHED THE GAME
   }, [])
@@ -34,7 +36,7 @@ const HomeScreen: React.FC<Props> = ({
         <Text style={[STYLES.largeText]}>{COPY.sentence}</Text>
       </View>
       <TouchableOpacity onPress={(): void => navigation.push('Quiz')} >
-        <View style={[STYLES.centered, styles.beginButton]}>
+        <View style={[STYLES.centered, STYLES.roundButton, STYLES.greenBackground]}>
           <Text style={[STYLES.subHeaderText, STYLES.white]}>{COPY.begin}</Text>
         </View>
       </TouchableOpacity>

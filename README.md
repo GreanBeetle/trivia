@@ -33,10 +33,10 @@ _WIP_ TypeScript was used for much of the business logic in the application. _WI
 _WIP_ As required by the specs, this project uses Expo. However, for the following reasons I typically don't use Expo. _WIP_  
 
 - In my opinion, a minimum knowledge of Xcode and the use of certificates and profiles is critical for a React Native Developer. Using Expo, developers aren't exposed to this. 
-- Same for Android Studio. 
-- Reproducing and troubleshooting real-world bugs involving different mobile OSes or, for example, dated or rarely-seen hardware is more difficult with Expo.  
+- A similar argument applies for Android Studio. 
+- Reproducing and troubleshooting real-world bugs involving different mobile OSes, for example, or dated or rarely-seen hardware is more difficult with Expo.  
 - Expo makes it hard to debug network issues related to WiFi or Data. 
-- Developing applications that make extensive use of phone hardware - such as bluetooth or NFC modules - is unnecessarily difficult with Exp.  
+- Developing applications that make extensive use of phone hardware - such as bluetooth or NFC modules - is unnecessarily difficult with Expo.  
 
 ### Author
 
