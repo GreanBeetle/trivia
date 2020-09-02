@@ -6,6 +6,10 @@ interface Props {
   currentTime: number
 }
 
-const Timer: React.FC<Props> = ({ currentTime }) => <View style={STYLES.standard}><Text>{currentTime}</Text></View>
+const Timer: React.FC<Props> = ({ currentTime }) => (
+  <View style={STYLES.standard}>
+    <Text style={STYLES.headerText}>{currentTime}</Text>
+  </View>
+) 
 
 export default Timer 

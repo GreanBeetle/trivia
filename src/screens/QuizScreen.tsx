@@ -44,23 +44,19 @@ const QuizScreen: React.FC<Props> = ({
     
   // what happens if component receives no questions? address this
   
-  
-  // let timer: any
-  let interval: any = useRef(null)
+  let timer: any = useRef(null)
 
   useEffect( () => { 
-    interval.current = setInterval( () => {
+    timer.current = setInterval( () => {
       updateTimeRemaining()
-    } , 1000)
-    return () => clearInterval(interval.current) // componentWillUnmount
+    }, 1000)
+    return () => clearInterval(timer.current)
   }, [])
 
-  // const startTimer = (): number => timer = setInterval(updateTimeRemaining(), 1000)
-  // try catch?
-  // add JS docs explaining this function 
+  // add JS docs explaining this function and perhaps a try catch?  
   const evaluateAnswer = (index: number, answer: boolean) => {
     let answeredCorrectly = answer === questions[index].correct_answer 
-    const newScore = answeredCorrectly ? score + 1 : score // keep until hackery is fixed, then refactor to if (answeredCorrectly) updateQuizScore(score + 1)
+    const newScore = answeredCorrectly ? score + 1 : score
     updateUserAnsweredCorrectly(index, answeredCorrectly) 
     updateQuizScore(newScore)
     resetTimer()
@@ -68,15 +64,9 @@ const QuizScreen: React.FC<Props> = ({
 
   // JS Docs?
   const navToDoneScreen = (): void => {
-    clearInterval(interval.current)
+    clearInterval(timer.current)
     navigation.push('Done')
   }
-
-  // timer function or functions here
-  // should be able to (a) resetTimer and (b) updateTimeRemaining and (c) setTimedOut
-  // so we will have 5 values that come from Redux (1) currentTime (2) a method called resetTimer and (3) a method called updateTimeRemaining 
-  // and (4) timedOut (5) setTimedOut(true) or setTimedOut(false)
-  // finally, we need a <TimedOut /> component that has options (a) try again with same questions or (b) try again with new questions
   
   return (
     <SafeAreaView style={STYLES.container}>
