@@ -10,7 +10,7 @@ interface Props {
   navigation: any,
   isGetting: boolean,
   getQuestionsError: ObjectType,
-  questions: ObjectType, // should this be ObjectType[]? yes it should 
+  questions: ObjectType, 
   score: number,
   currentQuestion: number,
   updateQuizScore: (score: number) => ActionType,
@@ -21,11 +21,11 @@ const QuizScreen: React.FC<Props> = ({
   navigation,
   questions, 
   score,
-  currentQuestion, // hackery! use this or ensure something else updates every time 
+  currentQuestion,  
   updateQuizScore, 
   updateUserAnsweredCorrectly
 }) => {  
-  console.log('questions answered', currentQuestion) // keep until hackery is fixed  
+    
 
   // what happens if component receives no questions? address this
   
@@ -36,13 +36,19 @@ const QuizScreen: React.FC<Props> = ({
     updateUserAnsweredCorrectly(index, answeredCorrectly) 
     updateQuizScore(newScore)
   }
+
+  // timer function or functions here
+  // should be able to (a) resetTimer and (b) updateTimeRemaining and (c) setTimedOut
+  // so we will have 5 values that come from Redux (1) currentTime (2) a method called resetTimer and (3) a method called updateTimeRemaining 
+  // and (4) timedOut (5) setTimedOut(true) or setTimedOut(false)
+  // finally, we need a <TimedOut /> component that has options (a) try again with same questions or (b) try again with new questions
   
   return (
     <SafeAreaView style={STYLES.container}>
       <ScoreBoard questions={questions} />
       <QuizHeadline headline={questions[currentQuestion] ? questions[currentQuestion].category : ''} />
       <Swipe questions={questions} onSwipe={evaluateAnswer} navToDoneScreen={() => navigation.push('Done')} />
-      <Timer />
+      <Timer currentTime={8} />
     </SafeAreaView>
   )
 }
