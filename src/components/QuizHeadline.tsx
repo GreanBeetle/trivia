@@ -7,7 +7,7 @@ interface Props {
 }
 
 const QuizHeadline: React.FC<Props> = ({ headline }) => (
-  <View style={STYLES.standard}>
+  <View style={[STYLES.standard, STYLES.standardPadding]}>
     <Text style={[STYLES.largeText, STYLES.textGray]}>{headline}</Text>
   </View>
 )

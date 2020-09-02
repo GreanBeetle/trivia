@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { HomeScreen, QuizScreen, DoneScreen } from './screens'
 
 /**
- * this nifty little binding allows us to reference the navigation container
+ * this binding allows us to reference the navigation container
  * and write nav methods in TypeScript (or JavaScript) modules anywhere in the app
  * for example, in utilities we import { navRef } and do this
  * navToScreen = (screen: string) => navRef.current?.navigate(screen)
@@ -27,7 +27,5 @@ const Navigation = () => (
     <InitialStackScreens />
   </NavigationContainer>
 )
-
-
 
 export default Navigation 

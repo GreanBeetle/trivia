@@ -44,18 +44,25 @@ export const isEven = (number: number):boolean => {
   else return false
 }
 
+// JS DOCS!
+// try catch!  
+// maybe don't keep this!
+export const navToScreen = (screen: string) => navRef.current?.navigate(screen) 
+
 // JS DOCS 
 export const retry = async () => {
   try {
     console.log('inside massive retry method')
-    console.log('and the store is', store)
+    console.log('and the store is', store.getState())
     console.log('and actions', actions)
-    navRef.current?.navigate('Done') // REMOVE
+    // resetQuestions
+    // resetQuizScore
+    // resetTimer
+    // setTimedOut(false)
+    // remove getQuestionsError
+    // await getQuestions
   } catch (error) {
     console.log('error in utility method retry', error)
   }
 }
 
-// JS DOCS!
-// try catch!  
-export const navToScreen = (screen: string) => navRef.current?.navigate(screen) 

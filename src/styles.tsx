@@ -18,6 +18,9 @@ export const GLOBAL_STYLES: ObjectType = {
   standardWidth: {
     width: deviceWindowWidth() - 40,
   },
+  standardPadding: {
+    padding: 20
+  },
   justifiedText: {
     alignItems: 'flex-start'
   },
