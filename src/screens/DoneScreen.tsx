@@ -40,7 +40,6 @@ const DoneScreen: React.FC<Props> = ({
       resetQuestions()
       resetQuizScore()
       await getQuestions()
-      // navigation.popToTop() // REMOVE
       navigation.dispatch(StackActions.pop(2))
     } catch (error) {
       console.log('error in play again method', error)

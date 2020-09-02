@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { SafeAreaView } from 'react-native'
+import { StackActions } from '@react-navigation/native'
 import { GLOBAL_STYLES as STYLES } from '../styles'
 import { connect } from 'react-redux'
 import { ObjectType, ActionType } from '../reusableTypes'
@@ -8,10 +9,13 @@ import {
   ScoreBoard, 
   Timer, 
   QuizHeadline,
-  TimedOut 
+  TimedOut,
+  GettingQuestions 
 } from '../components'
 import { 
-  updateQuizScore, 
+  getQuestions,
+  updateQuizScore,
+  resetQuizScore, 
   updateUserAnsweredCorrectly,
   resetTimer,
   updateTimeRemaining,
@@ -20,12 +24,14 @@ import {
 
 interface Props {
   navigation: any,
+  getQuestions: () => ObjectType,
   isGetting: boolean,
   getQuestionsError: ObjectType,
   questions: ObjectType, 
   score: number,
   currentQuestion: number,
   updateQuizScore: (score: number) => ActionType,
+  resetQuizScore: () => ActionType,
   updateUserAnsweredCorrectly: (index: number, answeredCorrectly: boolean) => ActionType,
   resetTimer: () => ActionType,
   updateTimeRemaining: () => ActionType,
@@ -36,10 +42,14 @@ interface Props {
 
 const QuizScreen: React.FC<Props> = ({ 
   navigation,
+  getQuestions,
+  isGetting,
+  getQuestionsError,
   questions, 
   score,
   currentQuestion,  
-  updateQuizScore, 
+  updateQuizScore,
+  resetQuizScore, 
   updateUserAnsweredCorrectly,
   resetTimer,
   updateTimeRemaining,
@@ -73,6 +83,16 @@ const QuizScreen: React.FC<Props> = ({
     clearInterval(timer.current)
     navigation.push('Done')
   }
+
+  // JS Docs
+  const retry = async () => {
+    clearInterval(timer.current)
+    resetTimer()
+    setTimedOut(false)
+    resetQuizScore()
+    await getQuestions()
+    navigation.dispatch(StackActions.pop(1))
+  }
   
   let content = (
     <SafeAreaView style={STYLES.container}>
@@ -84,7 +104,8 @@ const QuizScreen: React.FC<Props> = ({
   )
   
   if (currentTime === 0) setTimedOut(true)
-  if (timedOut) content = <TimedOut />
+  if (timedOut) content = <TimedOut retry={() => retry()} />
+  if (isGetting && !getQuestionsError) content = <GettingQuestions />
 
   return content
 }
@@ -97,7 +118,9 @@ const mapStateToProps = (state: ObjectType) => {
 }
 
 const actions = {
+  getQuestions,
   updateQuizScore,
+  resetQuizScore,
   updateUserAnsweredCorrectly,
   resetTimer,
   updateTimeRemaining,

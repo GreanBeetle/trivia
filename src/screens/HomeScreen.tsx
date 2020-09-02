@@ -24,6 +24,8 @@ const HomeScreen: React.FC<Props> = ({
   getQuestions 
 }) => {
  
+  // UPDATE STATE ONLY WHEN questions, isGetting, or getQuestionsError changes! Otherwise do not rerender
+
   useEffect(() => {
     getQuestions() // WILL NEED TO INVOKE THIS AGAIN USING COMPONENT DID UPDATE OR SOMETHING, AFTER PLAYER HAS FINISHED THE GAME
   }, [])
