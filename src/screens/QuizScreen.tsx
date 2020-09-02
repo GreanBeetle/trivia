@@ -69,7 +69,8 @@ const QuizScreen: React.FC<Props> = ({
     return () => clearInterval(timer.current)
   }, [])
 
-  // add JS docs explaining this function and perhaps a try catch?  
+  // add JS docs explaining this function and perhaps a try catch?
+  // try catch!   
   const evaluateAnswer = (index: number, answer: boolean) => {
     let answeredCorrectly = answer === questions[index].correct_answer 
     const newScore = answeredCorrectly ? score + 1 : score
@@ -79,19 +80,26 @@ const QuizScreen: React.FC<Props> = ({
   }
 
   // JS Docs?
+  // try catch!
   const navToDoneScreen = (): void => {
     clearInterval(timer.current)
     navigation.push('Done')
   }
 
   // JS Docs
+  // duplicate of playAgain() method in DoneScreen
   const retry = async () => {
-    clearInterval(timer.current)
-    resetTimer()
-    setTimedOut(false)
-    resetQuizScore()
-    await getQuestions()
-    navigation.dispatch(StackActions.pop(1))
+    try {
+      clearInterval(timer.current)
+      resetTimer()
+      setTimedOut(false)
+      resetQuizScore()
+      await getQuestions()
+      navigation.dispatch(StackActions.pop(1))
+    } catch (error) {
+      console.log('retry error', error) // keep?
+      // add setError here
+    }
   }
   
   let content = (

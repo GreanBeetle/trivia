@@ -35,6 +35,9 @@ const DoneScreen: React.FC<Props> = ({
   resetQuizScore 
 }) => { 
 
+  // JS Docs! 
+  // try catch!
+  // duplicate of RETRY() method in QuizScreen 
   const playAgain = async () => {
     try {
       resetQuestions()
