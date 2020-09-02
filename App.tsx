@@ -12,7 +12,7 @@ import { gestureHandlerRootHOC } from 'react-native-gesture-handler'
 
 const createStoreWithMiddleWare = applyMiddleware(thunk)(createStore)
 
-const store = createStoreWithMiddleWare(reducer)
+export const store = createStoreWithMiddleWare(reducer)
 
 const App = () => {  
   

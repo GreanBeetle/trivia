@@ -1,6 +1,9 @@
 import { Dimensions } from 'react-native'
 import { ObjectType } from './reusableTypes'
-const Entities = require('html-entities').AllHtmlEntities 
+const Entities = require('html-entities').AllHtmlEntities
+import { store } from '../App' 
+import * as actions from './redux/actions'
+import { navRef } from './navigation'
 
 /**
  * returns width of device window, rounded to nearest whole number
@@ -33,9 +36,26 @@ export const formatJSONquestions = async (questions: ObjectType[]) => {
 /** 
  * returns true for an even number, false for an odd number
  */
+// try catch! 
 export const isEven = (number: number):boolean => {
   if (number === 0) return true
   if (number === 1) return false
   if (number % 2 === 0) return true
   else return false
 }
+
+// JS DOCS 
+export const retry = async () => {
+  try {
+    console.log('inside massive retry method')
+    console.log('and the store is', store)
+    console.log('and actions', actions)
+    navRef.current?.navigate('Done') // REMOVE
+  } catch (error) {
+    console.log('error in utility method retry', error)
+  }
+}
+
+// JS DOCS!
+// try catch!  
+export const navToScreen = (screen: string) => navRef.current?.navigate(screen) 
