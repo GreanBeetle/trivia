@@ -19,11 +19,6 @@ const Swipe: React.FC<Props> = ({ questions, onSwipe, navToDoneScreen }) => {
   // make utility method for key=math.rand ... 
   const cards = questions.map((q: ObjectType) => ( // turn into component? yes, definitely
     <Card style={styles.card} key={Math.random().toString()}> 
-      <View style={[STYLES.justifiedText, STYLES.container]}>
-        <Text style={STYLES.largeText}>
-          category: {q.category} 
-        </Text>
-      </View>
       <View style={[STYLES.justifiedText, {flex: 2}]}>
         <Text style={STYLES.largeText}>
           {q.question}

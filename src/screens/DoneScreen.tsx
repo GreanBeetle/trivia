@@ -14,7 +14,7 @@ interface Props {
   navigation: any,
   questions: ObjectType[],
   score: number,
-  totalQuestionsAnswered: number,
+  currentQuestion: number,
   getQuestions: () => ObjectType,
   isGetting: boolean,
   getQuestionsError: ObjectType,
@@ -26,7 +26,7 @@ const DoneScreen: React.FC<Props> = ({
   navigation, 
   questions, 
   score, 
-  totalQuestionsAnswered, // no unused vars 
+  currentQuestion, // no unused vars 
   getQuestions,
   isGetting,
   getQuestionsError,
@@ -50,7 +50,7 @@ const DoneScreen: React.FC<Props> = ({
    */
   const header = (
     <View style={[STYLES.standard, styles.scoreContainer]}>
-      <Text style={STYLES.largeHeaderText}>{((score / questions.length) * 100).toString() + '%'}</Text>
+      <Text style={STYLES.subHeaderText}>{`score ${score}/${questions.length}`}</Text>
       <TouchableOpacity onPress={() => playAgain()}>
         <View style={[STYLES.centered, styles.playAgainButton]}>
           <Text style={[STYLES.subHeaderText, STYLES.white]}>{COPY.playAgain}</Text>
@@ -100,8 +100,8 @@ const DoneScreen: React.FC<Props> = ({
 
 const mapStateToProps = (state: ObjectType) => {
   const { isGetting, getQuestionsError, questions } = state.getQuestions
-  const { score, totalQuestionsAnswered } = state.quiz
-  return { questions, score, totalQuestionsAnswered, isGetting, getQuestionsError }
+  const { score, currentQuestion } = state.quiz
+  return { questions, score, currentQuestion, isGetting, getQuestionsError }
 }
 
 export default connect(mapStateToProps, { getQuestions, resetQuestions, resetQuizScore })(DoneScreen)
