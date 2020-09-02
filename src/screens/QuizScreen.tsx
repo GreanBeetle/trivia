@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { SafeAreaView } from 'react-native'
 import { GLOBAL_STYLES as STYLES } from '../styles'
 import { Swipe, ScoreBoard, Timer, QuizHeadline } from '../components'
@@ -46,13 +46,13 @@ const QuizScreen: React.FC<Props> = ({
   
   
   // let timer: any
-  let interval: any
+  let interval: any = useRef(null)
 
   useEffect( () => { 
-    interval = setInterval( () => {
+    interval.current = setInterval( () => {
       updateTimeRemaining()
     } , 1000)
-    return () => clearInterval(interval) // componentWillUnmount
+    return () => clearInterval(interval.current) // componentWillUnmount
   }, [])
 
   // const startTimer = (): number => timer = setInterval(updateTimeRemaining(), 1000)
@@ -68,7 +68,7 @@ const QuizScreen: React.FC<Props> = ({
 
   // JS Docs?
   const navToDoneScreen = (): void => {
-    clearInterval(interval)
+    clearInterval(interval.current)
     navigation.push('Done')
   }
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import { SafeAreaView, FlatList, Text, View } from 'react-native'
+import { StackActions } from '@react-navigation/native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { GettingQuestions } from '../components'
 import { GLOBAL_STYLES as STYLES, DONE_SCREEN_STYLES as styles } from '../styles'
@@ -39,7 +40,8 @@ const DoneScreen: React.FC<Props> = ({
       resetQuestions()
       resetQuizScore()
       await getQuestions()
-      navigation.popToTop()
+      // navigation.popToTop() // REMOVE
+      navigation.dispatch(StackActions.pop(2))
     } catch (error) {
       console.log('error in play again method', error)
     }
