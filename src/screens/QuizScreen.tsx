@@ -4,7 +4,13 @@ import { GLOBAL_STYLES as STYLES } from '../styles'
 import { Swipe, ScoreBoard, Timer, QuizHeadline } from '../components'
 import { connect } from 'react-redux'
 import { ObjectType, ActionType } from '../reusableTypes'
-import { updateQuizScore, updateUserAnsweredCorrectly } from '../redux/actions'
+import { 
+  updateQuizScore, 
+  updateUserAnsweredCorrectly,
+  resetTimer,
+  updateTimeRemaining,
+  setTimedOut 
+} from '../redux/actions'
 
 interface Props {
   navigation: any,
@@ -14,7 +20,12 @@ interface Props {
   score: number,
   currentQuestion: number,
   updateQuizScore: (score: number) => ActionType,
-  updateUserAnsweredCorrectly: (index: number, answeredCorrectly: boolean) => ActionType    
+  updateUserAnsweredCorrectly: (index: number, answeredCorrectly: boolean) => ActionType,
+  resetTimer: () => ActionType,
+  updateTimeRemaining: () => ActionType,
+  setTimedOut: (timedOut: boolean) => ActionType,
+  currentTime: number,
+  timedOut: boolean     
 }
 
 const QuizScreen: React.FC<Props> = ({ 
@@ -23,10 +34,14 @@ const QuizScreen: React.FC<Props> = ({
   score,
   currentQuestion,  
   updateQuizScore, 
-  updateUserAnsweredCorrectly
+  updateUserAnsweredCorrectly,
+  resetTimer,
+  updateTimeRemaining,
+  setTimedOut,
+  currentTime,
+  timedOut
 }) => {  
     
-
   // what happens if component receives no questions? address this
   
   // try catch?
@@ -35,9 +50,14 @@ const QuizScreen: React.FC<Props> = ({
     const newScore = answeredCorrectly ? score + 1 : score // keep until hackery is fixed, then refactor to if (answeredCorrectly) updateQuizScore(score + 1)
     updateUserAnsweredCorrectly(index, answeredCorrectly) 
     updateQuizScore(newScore)
+    resetTimer()
   }
 
   // timer function or functions here
+  console.log('updateTimeRemaining', updateTimeRemaining) // REMOVE
+  console.log('setTimedOut', setTimedOut) // REMOVE
+  console.log('timedOut', timedOut) // REMOVE
+  console.log('currentTime')
   // should be able to (a) resetTimer and (b) updateTimeRemaining and (c) setTimedOut
   // so we will have 5 values that come from Redux (1) currentTime (2) a method called resetTimer and (3) a method called updateTimeRemaining 
   // and (4) timedOut (5) setTimedOut(true) or setTimedOut(false)
@@ -48,7 +68,7 @@ const QuizScreen: React.FC<Props> = ({
       <ScoreBoard questions={questions} />
       <QuizHeadline headline={questions[currentQuestion] ? questions[currentQuestion].category : ''} />
       <Swipe questions={questions} onSwipe={evaluateAnswer} navToDoneScreen={() => navigation.push('Done')} />
-      <Timer currentTime={8} />
+      <Timer currentTime={currentTime} />
     </SafeAreaView>
   )
 }
@@ -56,7 +76,16 @@ const QuizScreen: React.FC<Props> = ({
 const mapStateToProps = (state: ObjectType) => {
   const { isGetting, getQuestionsError, questions } = state.getQuestions
   const { score, currentQuestion } = state.quiz
-  return { isGetting, getQuestionsError, questions, score, currentQuestion }
+  const { currentTime, timedOut } = state.timer
+  return { isGetting, getQuestionsError, questions, score, currentQuestion, currentTime, timedOut }
 }
 
-export default connect(mapStateToProps, { updateQuizScore, updateUserAnsweredCorrectly })(QuizScreen) 
+const actions = {
+  updateQuizScore,
+  updateUserAnsweredCorrectly,
+  resetTimer,
+  updateTimeRemaining,
+  setTimedOut
+}
+
+export default connect(mapStateToProps, actions)(QuizScreen) 
