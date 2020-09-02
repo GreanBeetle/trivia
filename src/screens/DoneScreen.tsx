@@ -50,7 +50,7 @@ const DoneScreen: React.FC<Props> = ({
    */
   const header = (
     <View style={[STYLES.standard, styles.scoreContainer]}>
-      <Text style={STYLES.largeHeaderText}>{((score / questions.length) * 100).toString() + '%'}</Text>
+      <Text style={STYLES.subHeaderText}>{`score ${score}/${questions.length}`}</Text>
       <TouchableOpacity onPress={() => playAgain()}>
         <View style={[STYLES.centered, styles.playAgainButton]}>
           <Text style={[STYLES.subHeaderText, STYLES.white]}>{COPY.playAgain}</Text>
