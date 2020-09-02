@@ -1,7 +1,7 @@
 import React from 'react'
 import { SafeAreaView } from 'react-native'
 import { GLOBAL_STYLES as STYLES } from '../styles'
-import { Swipe, ScoreBoard, Timer } from '../components'
+import { Swipe, ScoreBoard, Timer, QuizHeadline } from '../components'
 import { connect } from 'react-redux'
 import { ObjectType, ActionType } from '../reusableTypes'
 import { updateQuizScore, updateUserAnsweredCorrectly } from '../redux/actions'
@@ -12,7 +12,7 @@ interface Props {
   getQuestionsError: ObjectType,
   questions: ObjectType, // should this be ObjectType[]? yes it should 
   score: number,
-  totalQuestionsAnswered: number,
+  currentQuestion: number,
   updateQuizScore: (score: number) => ActionType,
   updateUserAnsweredCorrectly: (index: number, answeredCorrectly: boolean) => ActionType    
 }
@@ -21,11 +21,11 @@ const QuizScreen: React.FC<Props> = ({
   navigation,
   questions, 
   score,
-  totalQuestionsAnswered, // hackery! use this or ensure something else updates every time 
+  currentQuestion, // hackery! use this or ensure something else updates every time 
   updateQuizScore, 
   updateUserAnsweredCorrectly
 }) => {  
-  console.log('questions answered', totalQuestionsAnswered) // keep until hackery is fixed  
+  console.log('questions answered', currentQuestion) // keep until hackery is fixed  
 
   // what happens if component receives no questions? address this
   
@@ -40,6 +40,7 @@ const QuizScreen: React.FC<Props> = ({
   return (
     <SafeAreaView style={STYLES.container}>
       <ScoreBoard questions={questions} />
+      <QuizHeadline headline={questions[currentQuestion].category} />
       <Swipe questions={questions} onSwipe={evaluateAnswer} navToDoneScreen={() => navigation.push('Done')} />
       <Timer />
     </SafeAreaView>
@@ -48,8 +49,8 @@ const QuizScreen: React.FC<Props> = ({
 
 const mapStateToProps = (state: ObjectType) => {
   const { isGetting, getQuestionsError, questions } = state.getQuestions
-  const { score, totalQuestionsAnswered } = state.quiz
-  return { isGetting, getQuestionsError, questions, score, totalQuestionsAnswered }
+  const { score, currentQuestion } = state.quiz
+  return { isGetting, getQuestionsError, questions, score, currentQuestion }
 }
 
 export default connect(mapStateToProps, { updateQuizScore, updateUserAnsweredCorrectly })(QuizScreen) 

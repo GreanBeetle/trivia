@@ -53,6 +53,9 @@ export const GLOBAL_STYLES: ObjectType = {
   },
   green: {
     color: COLORS.actionGreen
+  },
+  darkGreen: {
+    color: COLORS.darkGreen
   }
 }
 
