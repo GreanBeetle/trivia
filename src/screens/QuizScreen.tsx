@@ -4,6 +4,7 @@ import { StackActions } from '@react-navigation/native'
 import { GLOBAL_STYLES as STYLES } from '../styles'
 import { connect } from 'react-redux'
 import { ObjectType, ActionType } from '../reusableTypes'
+import { retry } from '../utilities'
 import { 
   Swipe, 
   ScoreBoard, 
@@ -88,14 +89,10 @@ const QuizScreen: React.FC<Props> = ({
 
   // JS Docs
   // duplicate of playAgain() method in DoneScreen
-  const retry = async () => {
+  const tryAgain = async () => {
     try {
       clearInterval(timer.current)
-      resetTimer()
-      setTimedOut(false)
-      resetQuizScore()
-      await getQuestions()
-      navigation.dispatch(StackActions.pop(1))
+      retry(true)
     } catch (error) {
       console.log('retry error', error) // keep?
       // add setError here
@@ -112,7 +109,7 @@ const QuizScreen: React.FC<Props> = ({
   )
   
   if (currentTime === 0) setTimedOut(true)
-  if (timedOut) content = <TimedOut retry={() => retry()} />
+  if (timedOut) content = <TimedOut retry={() => tryAgain()} />
   if (isGetting && !getQuestionsError) content = <GettingQuestions />
 
   return content
