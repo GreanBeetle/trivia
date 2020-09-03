@@ -10,6 +10,7 @@ import { getQuestions, resetQuestions, resetQuizScore } from '../redux/actions'
 import { isEven } from '../utilities'
 import COLORS from '../colors'
 import { doneScreenCopy as COPY } from '../copy'
+import { retry } from '../utilities'
 
 interface Props {
   navigation: any,
@@ -40,9 +41,7 @@ const DoneScreen: React.FC<Props> = ({
   // duplicate of RETRY() method in QuizScreen 
   const playAgain = async () => {
     try {
-      resetQuestions()
-      resetQuizScore()
-      await getQuestions()
+      retry(false)
       navigation.dispatch(StackActions.pop(2))
     } catch (error) {
       console.log('error in play again method', error)
