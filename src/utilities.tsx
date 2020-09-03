@@ -36,7 +36,6 @@ export const formatJSONquestions = async (questions: ObjectType[]) => {
 /** 
  * returns true for an even number, false for an odd number
  */
-// try catch! 
 export const isEven = (number: number):boolean => {
   if (number === 0) return true
   if (number === 1) return false
@@ -44,12 +43,11 @@ export const isEven = (number: number):boolean => {
   else return false
 }
 
-// JS DOCS!
-// try catch!  
-// maybe don't keep this!
 export const navToScreen = (screen: string) => navRef.current?.navigate(screen) 
 
-// JS DOCS 
+/**
+ * resets all global state values and, if required, navs to home screen
+ */ 
 export const retry = async (shouldNavHome: boolean) => {
   try {
     store.dispatch(actions.resetQuestions())

@@ -12,6 +12,8 @@ interface Props {
   questions: ObjectType
 }
 
+// not currently scalable!
+// is NOT as performant as could be, update this component, especially selectBubbleType method
 const ScoreBoard: React.FC<Props> = ({ questions }) => {
   
   const nullBubble = (key: string) => <View style={styles.bubble} key={key} />
@@ -26,7 +28,7 @@ const ScoreBoard: React.FC<Props> = ({ questions }) => {
       else if (userAnsweredCorrectly === false) return skull(key)
       else return nullBubble(key) 
     } catch (error) {
-      console.log('error in selectBubbleType')
+      console.log('error in selectBubbleType') // change to Alert.alert(retry()) 
     }
   }
 

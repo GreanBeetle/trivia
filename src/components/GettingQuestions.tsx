@@ -11,5 +11,4 @@ const GettingQuestions: React.FC = () => (
   </SafeAreaView>
 )
 
-
 export default GettingQuestions

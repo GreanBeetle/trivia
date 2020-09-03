@@ -12,22 +12,18 @@ interface Props {
   navigation: any,
   isGetting: boolean,
   getQuestionsError: ObjectType,
-  questions: ObjectType | null | undefined, 
   getQuestions: () => ObjectType,
 }
 
 const HomeScreen: React.FC<Props> = ({ 
   navigation, 
   isGetting, 
-  getQuestionsError, 
-  questions, // NO UNUSED VARS use this to enable/disable the begin button
+  getQuestionsError,
   getQuestions 
 }) => {
- 
-  // UPDATE STATE ONLY WHEN questions, isGetting, or getQuestionsError changes! Otherwise do not rerender
 
   useEffect(() => {
-    getQuestions() // WILL NEED TO INVOKE THIS AGAIN USING COMPONENT DID UPDATE OR SOMETHING, AFTER PLAYER HAS FINISHED THE GAME
+    getQuestions() 
   }, [])
 
   let content = (
@@ -35,7 +31,7 @@ const HomeScreen: React.FC<Props> = ({
       <View>
         <Text style={[STYLES.largeText]}>{COPY.sentence}</Text>
       </View>
-      <TouchableOpacity onPress={(): void => navigation.push('Quiz')} >
+      <TouchableOpacity onPress={(): void => navigation.push('Quiz')} > 
         <View style={[STYLES.centered, STYLES.roundButton, STYLES.greenBackground]}>
           <Text style={[STYLES.subHeaderText, STYLES.white]}>{COPY.begin}</Text>
         </View>
@@ -51,8 +47,8 @@ const HomeScreen: React.FC<Props> = ({
 }
  
 const mapStateToProps = (state: ObjectType) => {
-  const { isGetting, getQuestionsError, questions } = state.getQuestions
-  return { isGetting, getQuestionsError, questions }
+  const { isGetting, getQuestionsError } = state.getQuestions
+  return { isGetting, getQuestionsError }
 }
 
 export default connect(mapStateToProps, { getQuestions })(HomeScreen)

@@ -6,7 +6,7 @@ import { GettingQuestions } from '../components'
 import { GLOBAL_STYLES as STYLES, DONE_SCREEN_STYLES as styles } from '../styles'
 import { ObjectType, ActionType } from '../reusableTypes'
 import { connect } from 'react-redux'
-import { getQuestions, resetQuestions, resetQuizScore } from '../redux/actions'
+import { getQuestions } from '../redux/actions'
 import { isEven } from '../utilities'
 import COLORS from '../colors'
 import { doneScreenCopy as COPY } from '../copy'
@@ -27,24 +27,17 @@ interface Props {
 const DoneScreen: React.FC<Props> = ({ 
   navigation, 
   questions, 
-  score, 
-  currentQuestion, // no unused vars 
-  getQuestions,
+  score,
   isGetting,
-  getQuestionsError,
-  resetQuestions,
-  resetQuizScore 
+  getQuestionsError
 }) => { 
 
-  // JS Docs! 
-  // try catch!
-  // duplicate of RETRY() method in QuizScreen 
   const playAgain = async () => {
     try {
       retry(false)
       navigation.dispatch(StackActions.pop(2))
     } catch (error) {
-      console.log('error in play again method', error)
+      console.log('error in play again method', error) // change to Alert.alert(retry()) 
     }
   }
 
@@ -107,4 +100,4 @@ const mapStateToProps = (state: ObjectType) => {
   return { questions, score, currentQuestion, isGetting, getQuestionsError }
 }
 
-export default connect(mapStateToProps, { getQuestions, resetQuestions, resetQuizScore })(DoneScreen)
+export default connect(mapStateToProps, { getQuestions })(DoneScreen)
