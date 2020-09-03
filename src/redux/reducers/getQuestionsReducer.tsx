@@ -22,7 +22,7 @@ const getQuestionsReducer = ( state = initialState, action: ActionType ) => {
     case GET_QUESTIONS_FAILURE: 
       return { ...state, isGetting: false, getQuestionsError: action.payload }
     case RESET_QUESTIONS:
-      return { ...state, questions: []}
+      return { questions: [], getQuestionsError: null, isGetting: false}
     case UPDATE_USER_ANSWERED_CORRECTLY: 
       let { questions } = state
       questions[action.payload.index].user_answered_correctly = action.payload.answeredCorrectly // fix 

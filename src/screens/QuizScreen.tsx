@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react'
 import { SafeAreaView } from 'react-native'
-import { StackActions } from '@react-navigation/native'
 import { GLOBAL_STYLES as STYLES } from '../styles'
 import { connect } from 'react-redux'
 import { ObjectType, ActionType } from '../reusableTypes'
+import { retry } from '../utilities'
 import { 
   Swipe, 
   ScoreBoard, 
@@ -14,8 +14,7 @@ import {
 } from '../components'
 import { 
   getQuestions,
-  updateQuizScore,
-  resetQuizScore, 
+  updateQuizScore, 
   updateUserAnsweredCorrectly,
   resetTimer,
   updateTimeRemaining,
@@ -31,7 +30,6 @@ interface Props {
   score: number,
   currentQuestion: number,
   updateQuizScore: (score: number) => ActionType,
-  resetQuizScore: () => ActionType,
   updateUserAnsweredCorrectly: (index: number, answeredCorrectly: boolean) => ActionType,
   resetTimer: () => ActionType,
   updateTimeRemaining: () => ActionType,
@@ -42,14 +40,12 @@ interface Props {
 
 const QuizScreen: React.FC<Props> = ({ 
   navigation,
-  getQuestions,
   isGetting,
   getQuestionsError,
   questions, 
   score,
   currentQuestion,  
   updateQuizScore,
-  resetQuizScore, 
   updateUserAnsweredCorrectly,
   resetTimer,
   updateTimeRemaining,
@@ -58,8 +54,6 @@ const QuizScreen: React.FC<Props> = ({
   timedOut
 }) => {  
     
-  // what happens if component receives no questions? address this
-  
   let timer: any = useRef(null)
 
   useEffect( () => { 
@@ -69,36 +63,33 @@ const QuizScreen: React.FC<Props> = ({
     return () => clearInterval(timer.current)
   }, [])
 
-  // add JS docs explaining this function and perhaps a try catch?
-  // try catch!   
+  /**
+   * compares user answer to the correct answer and updates
+   * both the quiz score and the question property "user answered correctly?"  
+   */   
   const evaluateAnswer = (index: number, answer: boolean) => {
-    let answeredCorrectly = answer === questions[index].correct_answer 
-    const newScore = answeredCorrectly ? score + 1 : score
-    updateUserAnsweredCorrectly(index, answeredCorrectly) 
-    updateQuizScore(newScore)
-    resetTimer()
+    try {
+      let answeredCorrectly = answer === questions[index].correct_answer 
+      const newScore = answeredCorrectly ? score + 1 : score
+      updateUserAnsweredCorrectly(index, answeredCorrectly) 
+      updateQuizScore(newScore)
+      resetTimer()
+    } catch (error) {
+      console.log('error in evaluate answer', error) // change to Alert.alert(retry()) 
+    }
   }
 
-  // JS Docs?
-  // try catch!
   const navToDoneScreen = (): void => {
     clearInterval(timer.current)
     navigation.push('Done')
   }
 
-  // JS Docs
-  // duplicate of playAgain() method in DoneScreen
-  const retry = async () => {
+  const tryAgain = async () => {
     try {
       clearInterval(timer.current)
-      resetTimer()
-      setTimedOut(false)
-      resetQuizScore()
-      await getQuestions()
-      navigation.dispatch(StackActions.pop(1))
+      retry(true)
     } catch (error) {
-      console.log('retry error', error) // keep?
-      // add setError here
+      console.log('try again error', error) // change to Alert.alert(retry())      
     }
   }
   
@@ -112,7 +103,7 @@ const QuizScreen: React.FC<Props> = ({
   )
   
   if (currentTime === 0) setTimedOut(true)
-  if (timedOut) content = <TimedOut retry={() => retry()} />
+  if (timedOut) content = <TimedOut retry={() => tryAgain()} />
   if (isGetting && !getQuestionsError) content = <GettingQuestions />
 
   return content
@@ -128,7 +119,6 @@ const mapStateToProps = (state: ObjectType) => {
 const actions = {
   getQuestions,
   updateQuizScore,
-  resetQuizScore,
   updateUserAnsweredCorrectly,
   resetTimer,
   updateTimeRemaining,

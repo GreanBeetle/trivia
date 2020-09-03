@@ -1,4 +1,4 @@
-# _WIP_ trivia _WIP_
+# trivia 
 ##### August 18, 2020 
 
 [![Generic badge](https://img.shields.io/badge/license-MIT-green.svg?style=plastic&labelColor=36566F)](https://shields.io/)
@@ -24,14 +24,12 @@ For iOS, scan the resulting QR code with the camera's built-in scanner. For Andr
 
 [For help troubleshooting, refer to the React Native documentation.](https://reactnative.dev/docs/environment-setup)
 
-### A note on TypeScript usage 
-
-_WIP_ TypeScript was used for much of the business logic in the application. _WIP_
 
 ### A note on Expo 
 
-_WIP_ As required by the specs, this project uses Expo. However, for the following reasons I typically don't use Expo. _WIP_  
+As required by the specs, this project uses Expo. However, for the following reasons I typically don't use Expo. 
 
+- As apps grow increasingly complicated, Expo becomes increasingly problematic. I think of it mostly as a learing tool for beginning RN developers. 
 - In my opinion, a minimum knowledge of Xcode and the use of certificates and profiles is critical for a React Native Developer. Using Expo, developers aren't exposed to this. 
 - A similar argument applies for Android Studio. 
 - Reproducing and troubleshooting real-world bugs involving different mobile OSes, for example, or dated or rarely-seen hardware is more difficult with Expo.  

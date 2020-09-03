@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler'
-import React, { ReactElement } from 'react';
+import React from 'react';
 import Navigation from './src/navigation'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
@@ -12,7 +12,7 @@ import { gestureHandlerRootHOC } from 'react-native-gesture-handler'
 
 const createStoreWithMiddleWare = applyMiddleware(thunk)(createStore)
 
-const store = createStoreWithMiddleWare(reducer)
+export const store = createStoreWithMiddleWare(reducer)
 
 const App = () => {  
   

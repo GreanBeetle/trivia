@@ -3,6 +3,13 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { HomeScreen, QuizScreen, DoneScreen } from './screens'
 
+/**
+ * reference to nav container to allow construction of nav 
+ * methods in JS or TS modules anywhere in app
+ * docs at reactnavigation.org/docs/navigating-without-navigation-prop/
+ */
+export const navRef: any = React.createRef() 
+
 const Stack = createStackNavigator()
 
 const InitialStackScreens = () => (
@@ -14,7 +21,7 @@ const InitialStackScreens = () => (
 )
 
 const Navigation = () => (
-  <NavigationContainer>
+  <NavigationContainer ref={navRef}>
     <InitialStackScreens />
   </NavigationContainer>
 )

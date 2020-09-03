@@ -31,6 +31,7 @@ export const getQuestions = (): ObjectType => {
       const results = await formatJSONquestions(json.results)
       console.log('dispatching get questions success with results', results)
       dispatch(getQuestionsSuccess(results))
+      // throw Error('bumble fuck!') // REMOVE!!!! 
     } catch (error) {
       console.log('dispatching get questions failure')
       dispatch(getQuestionsFailure(error))

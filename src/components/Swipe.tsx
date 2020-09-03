@@ -16,9 +16,9 @@ interface Props {
 
 const Swipe: React.FC<Props> = ({ questions, onSwipe, navToDoneScreen }) => {
  
-  // make utility method for key=math.rand ... 
-  const cards = questions.map((q: ObjectType) => ( // turn into component? yes, definitely
-    <Card style={styles.card} key={Math.random().toString()}> 
+  // this can be its own component
+  const cards = questions.map((q: ObjectType) => ( // need utility method for Math.random() below, or questions.indexOf(q)
+    <Card style={styles.card} key={Math.random().toString()}>  
       <View style={[STYLES.justifiedText, {flex: 2}]}>
         <Text style={STYLES.largeText}>
           {q.question}
@@ -37,10 +37,10 @@ const Swipe: React.FC<Props> = ({ questions, onSwipe, navToDoneScreen }) => {
     <View style={styles.swipeContainer}>
       <CardStack
         style={styles.content}
-        renderNoMoreCards={() => <Text style={{ fontWeight: '700', fontSize: 18, color: 'gray' }}>done</Text>} // adjust this to "congratulations!" or "good job" or whatever
+        renderNoMoreCards={() => <Text style={{ fontWeight: '700', fontSize: 18, color: 'gray' }}>nice</Text>} 
         onSwipedLeft={(index: number) => onSwipe(index, false)}
         onSwipedRight={(index: number) => onSwipe(index, true)}
-        onSwipedAll={() => navToDoneScreen()} // why is typescript screaming here? this works as expected
+        onSwipedAll={() => navToDoneScreen()} // fix TS problem
       >
         {cards}
       </CardStack>     
