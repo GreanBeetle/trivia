@@ -29,8 +29,8 @@ For iOS, scan the resulting QR code with the camera's built-in scanner. For Andr
 
 Typically I don't use expo for the following reasons 
 
-- As apps grow increasingly complicated, Expo becomes increasingly problematic. I think of it mostly as a learing tool for beginning RN developers. 
-- In my opinion, a minimum knowledge of Xcode and the use of certificates and profiles is critical for a React Native Developer. Using Expo, developers aren't exposed to this. 
+- As apps grow increasingly complicated, Expo can become increasingly problematic.  
+- A minimum knowledge of Xcode and the use of certificates and profiles is critical for a React Native Developer. Using Expo, developers aren't exposed to this. 
 - A similar argument applies for Android Studio. 
 - Reproducing and troubleshooting real-world bugs involving different mobile OSes, for example, or dated or rarely-seen hardware is more difficult with Expo.  
 - Expo makes it hard to debug network issues related to WiFi or Data. 
